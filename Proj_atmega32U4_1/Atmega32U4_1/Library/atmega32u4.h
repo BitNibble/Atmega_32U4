@@ -16,31 +16,30 @@ Comment:
 
 /*** Global Constant & Macro ***/
 #define Atmega32u4GPWR_Address 0x0000
-#define Atmega32u4AnalogComparator_Address
-#define Atmega32u4AnalogToDigitalConverter_Address
-#define Atmega32u4Bootloader_Address
-#define Atmega32u4CPURegister_Address
-#define Atmega32u4Eeprom_Address
-#define Atmega32u4ExternalInterrupts_Address
-#define Atmega32u4PORTB_Address
-#define Atmega32u4PORTC_Address
-#define Atmega32u4PORTD_Address
-#define Atmega32u4PORTE_Address
-#define Atmega32u4PORTF_Address
-#define Atmega32u4JtagInterface_Address
-#define Atmega32u4PhaseLockedLoop_Address
-#define Atmega32u4SerialPeripherialInterface_Address
-#define Atmega32u4TimerCounter4_Address
-#define Atmega32u4TimerCounter1_Address
-#define Atmega32u4TimerCounter3_Address
-#define Atmega32u4TimerCounter0_Address
-#define Atmega32u4TwoWireSerialInterface_Address
-#define Atmega32u4Usart_Address
-#define Atmega32u4UsbDeviceRegister_Address
-#define Atmega32u4WatchdogTimer_Address
+#define Atmega32u4AnalogComparator_Address 0x0050
+#define Atmega32u4AnalogToDigitalConverter_Address 0x0078
+#define Atmega32u4Bootloader_Address 0x0057
+#define Atmega32u4CPURegister_Address 0x003E
+#define Atmega32u4Eeprom_Address 0x003F
+#define Atmega32u4ExternalInterrupts_Address 0x003B
+#define Atmega32u4PORTB_Address 0x0023
+#define Atmega32u4PORTC_Address 0x0026
+#define Atmega32u4PORTD_Address 0x0029
+#define Atmega32u4PORTE_Address 0x002C
+#define Atmega32u4PORTF_Address 0x002F
+#define Atmega32u4JtagInterface_Address 0x0051
+#define Atmega32u4PhaseLockedLoop_Address 0x0049
+#define Atmega32u4SerialPeripherialInterface_Address 0x004C
+#define Atmega32u4TimerCounter4_Address 0x0039
+#define Atmega32u4TimerCounter1_Address 0x0036
+#define Atmega32u4TimerCounter3_Address 0x0038
+#define Atmega32u4TimerCounter0_Address 0x0035
+#define Atmega32u4TwoWireSerialInterface_Address 0x00B8
+#define Atmega32u4Usart_Address 0x00C8
+#define Atmega32u4UsbDeviceRegister_Address 0x00D7
+#define Atmega32u4WatchdogTimer_Address 0x0060
 
 /*** Global Variable ***/
-
 // Low Byte High Byte
 typedef struct {
 	uint8_t L; // Lower address
@@ -48,7 +47,6 @@ typedef struct {
 } HighLowByte;
 
 // MAIN HARDWARE LAYER
-
 // GPWR
 typedef struct {
 	uint8_t r0;
