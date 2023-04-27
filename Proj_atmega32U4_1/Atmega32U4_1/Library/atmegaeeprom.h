@@ -11,20 +11,13 @@ Comment:
 #ifndef _ATMEGAEEPROM_H_
 	#define _ATMEGAEEPROM_H_
 
-/***Compiler***/
-#if (__GNUC__ * 100 + __GNUC_MINOR__) < 304
-	#error "This library requires AVR-GCC 3.4 or later, update to newer AVR-GCC compiler !"
-#endif
-
-/***Working Frequency***/
-
-/***Global Library***/
+/*** Global Library ***/
 #include <avr/eeprom.h>
 #include <inttypes.h>
 
-/***Global Constant & Macro***/
+/*** Global Constant & Macro ***/
 
-/***Global Variable***/
+/*** Global Variable ***/
 struct prm{
 	// vtable
 	uint8_t (*read_byte) ( const uint8_t * addr );
@@ -45,7 +38,7 @@ struct prm{
 };
 typedef struct prm EEPROM;
 
-/***Global Header***/
+/*** Global Header ***/
 EEPROM EEPROMenable(void);
 
 #endif

@@ -8,16 +8,16 @@ Date: 04122022
 Comment:
    Very Stable
 *************************************************************************/
-/***File Library***/
+/*** File Library ***/
 #include "atmegaeeprom.h"
 
-/***File Constant & Macro***/
+/*** File Constant & Macro ***/
 
-/***File Variable***/
+/*** File Variable ***/
 
-/***File Header***/
+/*** File Header ***/
 
-/***Procedure & Function***/
+/*** Procedure & Function ***/
 EEPROM EEPROMenable(void){
 	EEPROM eprom;
 	eprom.read_byte = eeprom_read_byte;
@@ -38,7 +38,7 @@ EEPROM EEPROMenable(void){
 	return eprom;
 }
 
-/***File Interrupt***/
+/*** File Interrupt ***/
 
 /***EOF***/
 

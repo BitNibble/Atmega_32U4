@@ -11,18 +11,33 @@ Comment:
 #ifndef _ATMEGA32U4_H_
 	#define _ATMEGA32U4_H_
 
-/*** Compiler ***/
-#if (__GNUC__ * 100 + __GNUC_MINOR__) < 304
-	#error "This library requires AVR-GCC 3.4 or later, update to newer AVR-GCC compiler !"
-#endif
-
-/*** Working Frequency ***/
-#ifndef F_CPU
-	#define F_CPU 16000000UL
-#endif
-
 /*** Global Library ***/
 #include <inttypes.h>
+
+/*** Global Constant & Macro ***/
+#define Atmega32u4GPWR_Address 0x0000
+#define Atmega32u4AnalogComparator_Address
+#define Atmega32u4AnalogToDigitalConverter_Address
+#define Atmega32u4Bootloader_Address
+#define Atmega32u4CPURegister_Address
+#define Atmega32u4Eeprom_Address
+#define Atmega32u4ExternalInterrupts_Address
+#define Atmega32u4PORTB_Address
+#define Atmega32u4PORTC_Address
+#define Atmega32u4PORTD_Address
+#define Atmega32u4PORTE_Address
+#define Atmega32u4PORTF_Address
+#define Atmega32u4JtagInterface_Address
+#define Atmega32u4PhaseLockedLoop_Address
+#define Atmega32u4SerialPeripherialInterface_Address
+#define Atmega32u4TimerCounter4_Address
+#define Atmega32u4TimerCounter1_Address
+#define Atmega32u4TimerCounter3_Address
+#define Atmega32u4TimerCounter0_Address
+#define Atmega32u4TwoWireSerialInterface_Address
+#define Atmega32u4Usart_Address
+#define Atmega32u4UsbDeviceRegister_Address
+#define Atmega32u4WatchdogTimer_Address
 
 /*** Global Variable ***/
 
@@ -68,7 +83,7 @@ typedef struct {
 	uint8_t yh;
 	uint8_t zl;
 	uint8_t zh;
-}Atmega32u4GPWR_TypeDef;
+} Atmega32u4GPWR_TypeDef;
 
 // Analog Comparator (AC)
 typedef struct {
@@ -76,7 +91,7 @@ typedef struct {
 	uint8_t fill[42]; // (0x7B - 0x50) - 1
 	uint8_t adcsrb; // 0x7B
 	uint8_t didr1; // 0x7F
-}Atmega32u4AnalogComparator_TypeDef;
+} Atmega32u4AnalogComparator_TypeDef;
 
 // Analog to Digital Converter (ADC)
 typedef struct {
@@ -133,7 +148,7 @@ typedef struct {
 	uint8_t pcifr; // 0x3B
 	uint8_t eifr; // 0x3C
 	uint8_t eimsk; // 0x3D
-	uint8_t fill1[42]; // (68 - 3d) - 1
+	uint8_t fill1[42]; // (68 - 3D) - 1
 	uint8_t pcicr; // 0x68
 	uint8_t eicra; // 0x69
 	uint8_t eicrb; // 0x6A
@@ -145,35 +160,35 @@ typedef struct {
 	uint8_t pin; // 0x23
 	uint8_t ddr; // 0x24
 	uint8_t port; //0x25
-}Atmega32u4PORTB_TypeDef;
+} Atmega32u4PORTB_TypeDef;
 
 // I/O Port (PORTC)
 typedef struct {
 	uint8_t pin; // 0x26
 	uint8_t ddr; // 0x27
 	uint8_t port; // 0x28
-}Atmega32u4PORTC_TypeDef;
+} Atmega32u4PORTC_TypeDef;
 
 // I/O Port (PORTD)
 typedef struct {
 	uint8_t pin; // 0x29
 	uint8_t ddr; // 0x2A
 	uint8_t port; // 0x2B
-}Atmega32u4PORTD_TypeDef;
+} Atmega32u4PORTD_TypeDef;
 
 // I/O Port (PORTE)
 typedef struct {
 	uint8_t pin; // 0x2C
 	uint8_t ddr; // 0x2D
 	uint8_t port; // 0x2E
-}Atmega32u4PORTE_TypeDef;
+} Atmega32u4PORTE_TypeDef;
 
 // I/O Port (PORTF)
 typedef struct {
 	uint8_t pin; // 0x2F
 	uint8_t ddr; // 0x30
 	uint8_t port; // 0x31
-}Atmega32u4PORTF_TypeDef;
+} Atmega32u4PORTF_TypeDef;
 
 // JTAG Interface (JTAG)
 typedef struct {
@@ -181,14 +196,14 @@ typedef struct {
 	uint8_t fill1[2]; // (54 - 51) - 1
 	uint8_t mcusr; // 0x54
 	uint8_t mcucr; // 0x55
-}Atmega32u4JtagInterface_TypeDef;
+} Atmega32u4JtagInterface_TypeDef;
 
 // Phase Locked Loop (PLL)
 typedef struct {
 	uint8_t pllcsr; // 0x49
 	uint8_t fill1[2]; // (52 - 49) - 1
 	uint8_t pllfrq; // 0x52
-}Atmega32u4PhaseLockedLoop_TypeDef;
+} Atmega32u4PhaseLockedLoop_TypeDef;
 
 // Serial Peripheral Interface (SPI)
 typedef struct {
