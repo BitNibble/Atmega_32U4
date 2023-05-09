@@ -4,6 +4,8 @@
 
 Library\74hc595.c
 
+Library\atmega32u4mapping.c
+
 Library\buffer.c
 
 Library\clock.c

@@ -114,6 +114,12 @@
     <Compile Include="Library\atmega32u4.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Library\atmega32u4mapping.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32u4mapping.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Library\buffer.c">
       <SubType>compile</SubType>
     </Compile>

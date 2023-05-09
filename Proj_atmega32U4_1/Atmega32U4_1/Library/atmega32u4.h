@@ -4,7 +4,7 @@ Author: Sergio Manuel Santos
 	<sergio.salazar.santos@gmail.com>
 License: GNU General Public License
 Hardware: Atmega328 by ETT ET-BASE
-Date: 04122022
+Date: 09052023
 Comment: 
 	Virtual Image Atmega 32U4.
 ************************************************************************/
@@ -15,32 +15,32 @@ Comment:
 #include <inttypes.h>
 
 /*** Global Constant & Macro ***/
-#define Atmega32u4GPWR_Address 0x0000
-#define Atmega32u4AnalogComparator_Address 0x0050
-#define Atmega32u4AnalogToDigitalConverter_Address 0x0078
-#define Atmega32u4Bootloader_Address 0x0057
-#define Atmega32u4CPURegister_Address 0x003E
-#define Atmega32u4Eeprom_Address 0x003F
-#define Atmega32u4ExternalInterrupts_Address 0x003B
-#define Atmega32u4PORTB_Address 0x0023
-#define Atmega32u4PORTC_Address 0x0026
-#define Atmega32u4PORTD_Address 0x0029
-#define Atmega32u4PORTE_Address 0x002C
-#define Atmega32u4PORTF_Address 0x002F
-#define Atmega32u4JtagInterface_Address 0x0051
-#define Atmega32u4PhaseLockedLoop_Address 0x0049
-#define Atmega32u4SerialPeripherialInterface_Address 0x004C
-#define Atmega32u4TimerCounter4_Address 0x0039
-#define Atmega32u4TimerCounter1_Address 0x0036
-#define Atmega32u4TimerCounter3_Address 0x0038
-#define Atmega32u4TimerCounter0_Address 0x0035
-#define Atmega32u4TwoWireSerialInterface_Address 0x00B8
-#define Atmega32u4Usart_Address 0x00C8
-#define Atmega32u4UsbDeviceRegister_Address 0x00D7
-#define Atmega32u4WatchdogTimer_Address 0x0060
+#define Atmega32U4GPWR_Address 0x0000
+#define Atmega32U4AnalogComparator_Address 0x0050
+#define Atmega32U4AnalogToDigitalConverter_Address 0x0078
+#define Atmega32U4Bootloader_Address 0x0057
+#define Atmega32U4CPURegister_Address 0x003E
+#define Atmega32U4Eeprom_Address 0x003F
+#define Atmega32U4ExternalInterrupts_Address 0x003B
+#define Atmega32U4PORTB_Address 0x0023
+#define Atmega32U4PORTC_Address 0x0026
+#define Atmega32U4PORTD_Address 0x0029
+#define Atmega32U4PORTE_Address 0x002C
+#define Atmega32U4PORTF_Address 0x002F
+#define Atmega32U4JtagInterface_Address 0x0051
+#define Atmega32U4PhaseLockedLoop_Address 0x0049
+#define Atmega32U4SerialPeripherialInterface_Address 0x004C
+#define Atmega32U4TimerCounter4_Address 0x0039
+#define Atmega32U4TimerCounter1_Address 0x0036
+#define Atmega32U4TimerCounter3_Address 0x0038
+#define Atmega32U4TimerCounter0_Address 0x0035
+#define Atmega32U4TwoWireSerialInterface_Address 0x00B8
+#define Atmega32U4Usart1_Address 0x00C8
+#define Atmega32U4UsbDeviceRegister_Address 0x00D7
+#define Atmega32U4WatchdogTimer_Address 0x0060
 
 /*** Global Variable ***/
-// Low Byte High Byte
+// HLbyte
 typedef struct {
 	uint8_t L; // Lower address
 	uint8_t H; // Higher address
@@ -78,7 +78,7 @@ typedef struct {
 	HighLowByte X;
 	HighLowByte Y;
 	HighLowByte Z;
-} Atmega32u4GPWR_TypeDef;
+} Atmega32U4GPWR_TypeDef;
 
 // Analog Comparator (AC)
 typedef struct {
@@ -86,7 +86,7 @@ typedef struct {
 	uint8_t fill[42]; // (0x7B - 0x50) - 1
 	uint8_t adcsrb; // 0x7B
 	uint8_t didr1; // 0x7F
-} Atmega32u4AnalogComparator_TypeDef;
+} Atmega32U4AnalogComparator_TypeDef;
 
 // Analog to Digital Converter (ADC)
 typedef struct {
@@ -96,12 +96,12 @@ typedef struct {
 	uint8_t admux; // 0x7C
 	uint8_t didr2; // 0x7D
 	uint8_t didr0; // 0x7E
-} Atmega32u4AnalogToDigitalConverter_TypeDef;
+} Atmega32U4AnalogToDigitalConverter_TypeDef;
 
 // Bootloader (BOOT_LOAD)
 typedef struct {
 	HighLowByte spmcsr; // 0x57 
-} Atmega32u4Bootloader_TypeDef;
+} Atmega32U4Bootloader_TypeDef;
 
 // CPU Register (CPU)
 typedef struct {
@@ -129,14 +129,14 @@ typedef struct {
 	uint8_t clksel0; // 0xC5
 	uint8_t clksel1; // 0xC6
 	uint8_t clksta; // 0xC7
-} Atmega32u4CPURegister_TypeDef;
+} Atmega32U4CPURegister_TypeDef;
 
 // EEPROM (EEPROM)
 typedef struct {
 	uint8_t eecr; // 0x3F
 	uint8_t eedr; // 0x40
 	uint16_t eear; // 0x41
-} Atmega32u4Eeprom_TypeDef;
+} Atmega32U4Eeprom_TypeDef;
 
 // External Interrupts (EXINT)
 typedef struct {
@@ -148,42 +148,42 @@ typedef struct {
 	uint8_t eicra; // 0x69
 	uint8_t eicrb; // 0x6A
 	uint8_t pcmsk0; // 0x6B
-} Atmega32u4ExternalInterrupts_TypeDef;
+} Atmega32U4ExternalInterrupts_TypeDef;
 
 // I/O Port (PORTB)
 typedef struct {
 	uint8_t pin; // 0x23
 	uint8_t ddr; // 0x24
 	uint8_t port; //0x25
-} Atmega32u4PORTB_TypeDef;
+} Atmega32U4PORTB_TypeDef;
 
 // I/O Port (PORTC)
 typedef struct {
 	uint8_t pin; // 0x26
 	uint8_t ddr; // 0x27
 	uint8_t port; // 0x28
-} Atmega32u4PORTC_TypeDef;
+} Atmega32U4PORTC_TypeDef;
 
 // I/O Port (PORTD)
 typedef struct {
 	uint8_t pin; // 0x29
 	uint8_t ddr; // 0x2A
 	uint8_t port; // 0x2B
-} Atmega32u4PORTD_TypeDef;
+} Atmega32U4PORTD_TypeDef;
 
 // I/O Port (PORTE)
 typedef struct {
 	uint8_t pin; // 0x2C
 	uint8_t ddr; // 0x2D
 	uint8_t port; // 0x2E
-} Atmega32u4PORTE_TypeDef;
+} Atmega32U4PORTE_TypeDef;
 
 // I/O Port (PORTF)
 typedef struct {
 	uint8_t pin; // 0x2F
 	uint8_t ddr; // 0x30
 	uint8_t port; // 0x31
-} Atmega32u4PORTF_TypeDef;
+} Atmega32U4PORTF_TypeDef;
 
 // JTAG Interface (JTAG)
 typedef struct {
@@ -191,21 +191,21 @@ typedef struct {
 	uint8_t fill1[2]; // (0x54 - 0x51) - 1
 	uint8_t mcusr; // 0x54
 	uint8_t mcucr; // 0x55
-} Atmega32u4JtagInterface_TypeDef;
+} Atmega32U4JtagInterface_TypeDef;
 
 // Phase Locked Loop (PLL)
 typedef struct {
 	uint8_t pllcsr; // 0x49
 	uint8_t fill1[2]; // (0x52 - 0x49) - 1
 	uint8_t pllfrq; // 0x52
-} Atmega32u4PhaseLockedLoop_TypeDef;
+} Atmega32U4PhaseLockedLoop_TypeDef;
 
 // Serial Peripheral Interface (SPI)
 typedef struct {
 	uint8_t spcr; // 0x4C
 	uint8_t spsr; // 0x4D
 	uint8_t spdr; // 0x4E
-} Atmega32u4SerialPeripherialInterface_TypeDef;
+} Atmega32U4SerialPeripherialInterface_TypeDef;
 
 // Timer/Counter, 10-bit (TC4)
 typedef struct {
@@ -227,7 +227,7 @@ typedef struct {
 	uint8_t ocr4d; // 0xD2
 	uint8_t fill4; // (0xD4 - 0xD2) - 1
 	uint8_t dt4; // 0xD4
-} Atmega32u4TimerCounter4_TypeDef;
+} Atmega32U4TimerCounter4_TypeDef;
 
 // Timer/Counter, 16-bit (TC1)
 typedef struct {
@@ -244,7 +244,7 @@ typedef struct {
 	HighLowByte ocr1a; // 0x88 0x89
 	HighLowByte ocr1b; // 0x8A 0x8B
 	HighLowByte ocr1c; // 0x8C 0x8D
-} Atmega32u4TimerCounter1_TypeDef;
+} Atmega32U4TimerCounter1_TypeDef;
 
 // Timer/Counter, 16-bit (TC3)
 typedef struct {
@@ -261,7 +261,7 @@ typedef struct {
 	HighLowByte ocr3a; // 0x98 0x99
 	HighLowByte ocr3b; // 0x9A 0x9B
 	HighLowByte ocr3c; // 0x9C 0x9D
-} Atmega32u4TimerCounter3_TypeDef;
+} Atmega32U4TimerCounter3_TypeDef;
 
 // Timer/Counter, 8-bit (TC0)
 typedef struct {
@@ -275,7 +275,7 @@ typedef struct {
 	uint8_t ocr0b; // 0x48
 	uint8_t fill2[37]; // (0x6E - 0x48) - 1
 	uint8_t timsk0; // 0x6E
-} Atmega32u4TimerCounter0_TypeDef;
+} Atmega32U4TimerCounter0_TypeDef;
 
 // Two Wire Serial Interface (TWI)
 typedef struct {
@@ -285,7 +285,7 @@ typedef struct {
 	uint8_t twdr; // 0xBB
 	uint8_t twcr; // 0xBC
 	uint8_t twamr; // 0xBD
-} Atmega32u4TwoWireSerialInterface_TypeDef;
+} Atmega32U4TwoWireSerialInterface_TypeDef;
 
 // USART (USART1)
 typedef struct {
@@ -295,7 +295,7 @@ typedef struct {
 	uint8_t ucsr1d; // 0xCB
 	HighLowByte ubrr1; // 0xCC 0xCD
 	uint8_t udr1; // 0xCE
-} Atmega32u4Usart_TypeDef;
+} Atmega32U4Usart1_TypeDef;
 
 // USB Device Register (USB_DEVICE)
 typedef struct {
@@ -324,12 +324,12 @@ typedef struct {
 	uint8_t uebclx; // 0xF2
 	uint8_t uebchx; // 0xF3
 	uint8_t ueint; // 0xF4
-} Atmega32u4UsbDeviceRegister_TypeDef;
+} Atmega32U4UsbDeviceRegister_TypeDef;
 
 // Watchdog Timer (WDT)
 typedef struct {
 	uint8_t wdtcr; // 0x60
-} Atmega32u4WatchdogTimer_TypeDef;
+} Atmega32U4WatchdogTimer_TypeDef;
 
 #endif
 
