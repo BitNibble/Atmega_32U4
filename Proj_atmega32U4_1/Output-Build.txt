@@ -1,12 +1,12 @@
-﻿------ Clean started: Project: Atmega32U4_1, Configuration: Debug AVR ------
+﻿------ Clean started: Project: Atmega32U4_1, Configuration: Release AVR ------
 Build started.
 Project "Atmega32U4_1.cproj" (Clean target(s)):
 Target "Clean" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Compiler.targets" from project "C:\Users\sergi\Documents\GitHub_2023\Atmega_32U4\Proj_atmega32U4_1\Atmega32U4_1\Atmega32U4_1.cproj" (entry point):
 	Task "RunCompilerTask"
 		Shell Utils Path C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils
 		C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils\make.exe clean 
-		rm -rf  Library/74hc595.o Library/buffer.o Library/clock.o Library/explode.o Library/function.o Library/hx711.o Library/keypad.o Library/lcd.o Library/lfsm.o Library/rotenc.o Library/watch.o Library/znpid.o main.o   
-		rm -rf  Library/74hc595.d Library/buffer.d Library/clock.d Library/explode.d Library/function.d Library/hx711.d Library/keypad.d Library/lcd.d Library/lfsm.d Library/rotenc.d Library/watch.d Library/znpid.d main.d   
+		rm -rf  Library/atmega32u4mapping.o Library/explode.o main.o   
+		rm -rf  Library/atmega32u4mapping.d Library/explode.d main.d   
 		rm -rf "Atmega32U4_1.elf" "Atmega32U4_1.hex" "Atmega32U4_1.eep" "Atmega32U4_1.map" "Atmega32U4_1.usersignatures" "Atmega32U4_1.a"  "Atmega32U4_1.lss"
 	Done executing task "RunCompilerTask".
 Done building target "Clean" in project "Atmega32U4_1.cproj".
