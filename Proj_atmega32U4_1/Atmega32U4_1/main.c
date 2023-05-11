@@ -43,7 +43,7 @@ int main(void)
 	mega.tc1.reg->tccr1a &= ~((1 << WGM11) | (1 << WGM10));
 	mega.tc1.reg->tccr1b &= ~((1 << WGM13) | (1 << WGM12));
 	// interrupt overflow
-	mega.tc1.reg->timsk1 |= (1 << TOIE1);
+	mega.tc1.reg->mask->timsk1 |= (1 << TOIE1);
 	// compoutmodeA disconnected
 	mega.tc1.reg->tccr1a &= ~((1 << COM1A0) | (1 << COM1A1));
 	// compoutmodeB disconnected
