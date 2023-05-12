@@ -22,7 +22,7 @@ Comment:
 #include "atmega32U4.h"
 // MODULES
 //#include "atmega32U4analog.h"
-//#include "atmegaeeprom.h"
+#include "atmegaeeprom.h"
 //#include "atmega32U4interrupt.h"
 //#include "atmega32U4timer.h"
 //#include "atmega32U4twi.h"

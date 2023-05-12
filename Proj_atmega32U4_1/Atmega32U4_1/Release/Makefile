@@ -39,6 +39,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Library/atmega32u4mapping.c \
+../Library/atmegaeeprom.c \
 ../Library/explode.c \
 ../main.c
 
@@ -51,21 +52,25 @@ ASM_SRCS +=
 
 OBJS +=  \
 Library/atmega32u4mapping.o \
+Library/atmegaeeprom.o \
 Library/explode.o \
 main.o
 
 OBJS_AS_ARGS +=  \
 Library/atmega32u4mapping.o \
+Library/atmegaeeprom.o \
 Library/explode.o \
 main.o
 
 C_DEPS +=  \
 Library/atmega32u4mapping.d \
+Library/atmegaeeprom.d \
 Library/explode.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
 Library/atmega32u4mapping.d \
+Library/atmegaeeprom.d \
 Library/explode.d \
 main.d
 
@@ -84,6 +89,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 Library/atmega32u4mapping.o: ../Library/atmega32u4mapping.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.41
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.41\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DNDEBUG  -I"../Library"  -Os -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Library/atmegaeeprom.o: ../Library/atmegaeeprom.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.41
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.41\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DNDEBUG  -I"../Library"  -Os -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

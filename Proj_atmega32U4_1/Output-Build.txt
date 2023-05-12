@@ -5,8 +5,8 @@ Target "Clean" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Compiler.targ
 	Task "RunCompilerTask"
 		Shell Utils Path C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils
 		C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils\make.exe clean 
-		rm -rf  Library/atmega32u4mapping.o Library/explode.o main.o   
-		rm -rf  Library/atmega32u4mapping.d Library/explode.d main.d   
+		rm -rf  Library/atmega32u4mapping.o Library/atmegaeeprom.o Library/explode.o main.o   
+		rm -rf  Library/atmega32u4mapping.d Library/atmegaeeprom.d Library/explode.d main.d   
 		rm -rf "Atmega32U4_1.elf" "Atmega32U4_1.hex" "Atmega32U4_1.eep" "Atmega32U4_1.map" "Atmega32U4_1.usersignatures" "Atmega32U4_1.a"  "Atmega32U4_1.lss"
 	Done executing task "RunCompilerTask".
 Done building target "Clean" in project "Atmega32U4_1.cproj".
