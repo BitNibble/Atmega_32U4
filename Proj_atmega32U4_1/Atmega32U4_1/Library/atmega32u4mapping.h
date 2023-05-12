@@ -127,8 +127,8 @@ typedef struct {
 typedef struct {
 	Atmega32U4TimerCounter4_TypeDef* reg;
 	Atmega32U4CompareRegister4_TypeDef* comp;
-	Atmega32U4TimerMask_TypeDef* mask;
-	Atmega32U4TimerMask_TypeDef* flag;
+	Atmega32U4TimerMask_TypeDef* imask;
+	Atmega32U4TimerMask_TypeDef* iflag;
 	#if defined(_ATMEGA32U4TIMER_H_)
 	TIMER_COUNTER4 (*enable)(unsigned char wavegenmode, unsigned char interrupt);
 	#endif
@@ -138,8 +138,8 @@ typedef struct {
 typedef struct {
 	Atmega32U4TimerCounter1_TypeDef* reg;
 	Atmega32U4CompareRegister1_TypeDef* comp;
-	Atmega32U4TimerMask_TypeDef* mask;
-	Atmega32U4TimerMask_TypeDef* flag;
+	Atmega32U4TimerMask_TypeDef* imask;
+	Atmega32U4TimerMask_TypeDef* iflag;
 	#if defined(_ATMEGA32U4TIMER_H_)
 		TIMER_COUNTER1 (*enable)(unsigned char wavegenmode, unsigned char interrupt);
 	#endif
@@ -149,8 +149,8 @@ typedef struct {
 typedef struct {
 	Atmega32U4TimerCounter3_TypeDef* reg;
 	Atmega32U4CompareRegister3_TypeDef* comp;
-	Atmega32U4TimerMask_TypeDef* mask;
-	Atmega32U4TimerMask_TypeDef* flag;
+	Atmega32U4TimerMask_TypeDef* imask;
+	Atmega32U4TimerMask_TypeDef* iflag;
 	#if defined(_ATMEGA32U4TIMER_H_)
 		TIMER_COUNTER3 (*enable)(unsigned char wavegenmode, unsigned char interrupt);
 	#endif
@@ -160,8 +160,8 @@ typedef struct {
 typedef struct {
 	Atmega32U4TimerCounter0_TypeDef* reg;
 	Atmega32U4CompareRegister0_TypeDef* comp;
-	Atmega32U4TimerMask_TypeDef* mask;
-	Atmega32U4TimerMask_TypeDef* flag;
+	Atmega32U4TimerMask_TypeDef* imask;
+	Atmega32U4TimerMask_TypeDef* iflag;
 	#if defined(_ATMEGA32U4TIMER_H_)
 		TIMER_COUNTER0 (*enable)(unsigned char wavegenmode, unsigned char interrupt);
 	#endif
