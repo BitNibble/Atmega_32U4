@@ -49,7 +49,7 @@ int main(void)
 	mega.tc1.reg->tccr1b &= ~(1 << WGM13);
 	//       Interrupt Handler
 	// interrupt overflow and on compare match A
-	mega.tc1.reg->timsk1 |= ((1 << TOIE1) | (1 << OCIE1A));
+	mega.tc1.mask->timsk1 |= ((1 << TOIE1) | (1 << OCIE1A));
 	//       Output mode
 	// compoutmodeA disconnected
 	mega.tc1.reg->tccr1a &= ~((1 << COM1A0) | (1 << COM1A1));
@@ -59,7 +59,7 @@ int main(void)
 	mega.tc1.reg->tccr1a &= ~((1 << COM1C0) | (1 << COM1C1));
 	//       Output Compare
 	// compareA
-	mega.tc1.reg->ocr1a = mega.writehlbyte(0x01FF);
+	mega.tc1.comp->ocr1a = mega.writehlbyte(0x01FF);
 	// compareB
 	//mega.tc1.reg->ocr1b = mega.writehlbyte(0x00FF);
 	// compareC
