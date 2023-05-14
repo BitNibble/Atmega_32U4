@@ -1,4 +1,4 @@
-﻿------ Clean started: Project: Atmega32U4_1, Configuration: Release AVR ------
+﻿------ Clean started: Project: Atmega32U4_1, Configuration: Debug AVR ------
 Build started.
 Project "Atmega32U4_1.cproj" (Clean target(s)):
 Target "Clean" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Compiler.targets" from project "C:\Users\sergi\Documents\GitHub_2023\Atmega_32U4\Proj_atmega32U4_1\Atmega32U4_1\Atmega32U4_1.cproj" (entry point):
