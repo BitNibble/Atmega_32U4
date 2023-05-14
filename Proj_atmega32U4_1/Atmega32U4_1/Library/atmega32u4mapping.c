@@ -17,11 +17,11 @@ Comment:
 ATMEGA32U4 ret;
 
 /***File Header***/
-uint16_t ReadHLByte(HighLowByte reg);
-uint16_t ReadLHByte(HighLowByte reg);
-HighLowByte WriteHLByte(uint16_t val);
-HighLowByte WriteLHByte(uint16_t val);
-uint16_t SwapByte(uint16_t num);
+uint16_t ATMEGA32U4_ReadHLByte(HighLowByte reg);
+uint16_t ATMEGA32U4_ReadLHByte(HighLowByte reg);
+HighLowByte ATMEGA32U4_WriteHLByte(uint16_t val);
+HighLowByte ATMEGA32U4_WriteLHByte(uint16_t val);
+uint16_t ATMEGA32U4_SwapByte(uint16_t num);
 
 /*** File Procedure & Function ***/
 ATMEGA32U4 ATMEGA32U4enable(void){
@@ -116,38 +116,38 @@ ATMEGA32U4 ATMEGA32U4enable(void){
 	// WDT
 	ret.wdt.reg = (Atmega32U4WatchdogTimer_TypeDef*) Atmega32U4WatchdogTimer_Address;
 	// func
-	ret.readhlbyte = ReadHLByte;
-	ret.readlhbyte = ReadLHByte;
-	ret.writehlbyte = WriteHLByte;
-	ret.writelhbyte = WriteLHByte;
-	ret.swapbyte = SwapByte;
+	ret.readhlbyte = ATMEGA32U4_ReadHLByte;
+	ret.readlhbyte = ATMEGA32U4_ReadLHByte;
+	ret.writehlbyte = ATMEGA32U4_WriteHLByte;
+	ret.writelhbyte = ATMEGA32U4_WriteLHByte;
+	ret.swapbyte = ATMEGA32U4_SwapByte;
 	return ret;
 }
 
 // COMMON
-uint16_t ReadHLByte(HighLowByte reg)
+uint16_t ATMEGA32U4_ReadHLByte(HighLowByte reg)
 {
 	return (reg.H << 8) | reg.L;
 }
 
-uint16_t ReadLHByte(HighLowByte reg)
+uint16_t ATMEGA32U4_ReadLHByte(HighLowByte reg)
 {
 	return (reg.L << 8) | reg.H;
 }
 
-HighLowByte WriteHLByte(uint16_t val) // AVR normal little endian
+HighLowByte ATMEGA32U4_WriteHLByte(uint16_t val) // AVR normal little endian
 {
 	HighLowByte reg; reg.H = (val >> 8); reg.L = val;
 	return reg;
 }
 
-HighLowByte WriteLHByte(uint16_t val)
+HighLowByte ATMEGA32U4_WriteLHByte(uint16_t val)
 {
 	HighLowByte reg; reg.L = (val >> 8); reg.H = val;
 	return reg;
 }
 
-uint16_t SwapByte(uint16_t num)
+uint16_t ATMEGA32U4_SwapByte(uint16_t num)
 {
 	uint16_t tp;
 	tp = (num << 8);
