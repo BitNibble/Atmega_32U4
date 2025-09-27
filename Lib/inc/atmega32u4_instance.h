@@ -2,7 +2,7 @@
 	ATMEGA 32U4 INSTANCE
 Author: <sergio.salazar.santos@gmail.com>
 License: GNU General Public License
-Hardware: Atmega32U4 by Arduino
+Hardware: Atmega32U4
 Date: 26092025
 ************************************************************************/
 #ifndef _ATMEGA32U4_INSTANCE_H_

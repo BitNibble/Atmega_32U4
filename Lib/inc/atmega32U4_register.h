@@ -1,9 +1,9 @@
 /************************************************************************
 	ATMEGA 32U4 REGISTER
-Author:   <sergio.salazar.santos@gmail.com>
-License:  GNU General Public License
-Hardware: Atmega32U4 by ETT ET-BASE
-Date:     26092025
+Author: <sergio.salazar.santos@gmail.com>
+License: GNU General Public License
+Hardware: Atmega32U4
+Date: 26092025
 ************************************************************************/
 #ifndef _ATMEGA32U4_REGISTER_H_
 	#define _ATMEGA32U4_REGISTER_H_
