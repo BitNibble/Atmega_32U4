@@ -14,6 +14,7 @@ Date: 26092025
 
 /*** Define & Macro ***/
 #define Atmega32U4_GPWR_Address 0x0000
+#define Atmega32U4_GPIAR_Address 0x001A
 #define Atmega32U4_AnalogComparator_Address 0x0050
 #define Atmega32U4_AnalogToDigitalConverter_Address 0x0078
 #define Atmega32U4_Bootloader_Address 0x0057
@@ -69,49 +70,56 @@ typedef volatile struct {
 	U_word X; // 0x1A 0x1B
 	U_word Y; // 0x1C 0x1D
 	U_word Z; // 0x1E 0x1F
-} Atmega32U4GPWR_TypeDef;
+} Atmega32U4_GPWR;
+
+// Indirect Address Register
+typedef volatile struct {
+	U_word X; // 0x1A 0x1B
+	U_word Y; // 0x1C 0x1D
+	U_word Z; // 0x1E 0x1F
+} Atmega32U4_GPIAR;
 
 // I/O Port (PORTB)
 typedef volatile struct {
 	PINB_type pin; // 0x23
 	DDRB_type ddr; // 0x24
 	PORTB_type port; //0x25
-} Atmega32U4PORTB_TypeDef;
+} Atmega32U4_PORTB;
 
 // I/O Port (PORTC)
 typedef volatile struct {
 	PINC_type pin; // 0x26
 	DDRC_type ddr; // 0x27
 	PORTC_type port; // 0x28
-} Atmega32U4PORTC_TypeDef;
+} Atmega32U4_PORTC;
 
 // I/O Port (PORTD)
 typedef volatile struct {
 	PIND_type pin; // 0x29
 	DDRD_type ddr; // 0x2A
 	PORTD_type port; // 0x2B
-} Atmega32U4PORTD_TypeDef;
+} Atmega32U4_PORTD;
 
 // I/O Port (PORTE)
 typedef volatile struct {
 	PINE_type pin; // 0x2C
 	DDRE_type ddr; // 0x2D
 	PORTE_type port; // 0x2E
-} Atmega32U4PORTE_TypeDef;
+} Atmega32U4_PORTE;
 
 // I/O Port (PORTF)
 typedef volatile struct {
 	PINF_type pin; // 0x2F
 	DDRF_type ddr; // 0x30
 	PORTF_type port; // 0x31
-} Atmega32U4PORTF_TypeDef;
+} Atmega32U4_PORTF;
 
 // EEPROM (EEPROM)
 typedef volatile struct {
 	EECR_type eecr; // 0x3F
 	EEDR_type eedr; // 0x40
 	EEAR_type eear; // 0x41 0x42
-} Atmega32U4Eeprom_TypeDef;
+} Atmega32U4_Eeprom;
 
 // Timer/Counter, 8-bit (TC0)
 typedef volatile struct {
@@ -125,14 +133,14 @@ typedef volatile struct {
 	OCR0B_type ocr0b; // 0x48
 	uint8_t fill2[37];
 	TIMSK0_type timsk0; // 0x6E
-} Atmega32U4TimerCounter0_TypeDef;
+} Atmega32U4_TimerCounter0;
 
 // Serial Peripheral Interface (SPI)
 typedef volatile struct {
 	SPCR_type spcr; // 0x4C
 	SPSR_type spsr; // 0x4D
 	SPDR_type spdr; // 0x4E
-} Atmega32U4SerialPeripherialInterface_TypeDef;
+} Atmega32U4_SerialPeripherialInterface;
 
 // Analog Comparator (AC)
 typedef volatile struct {
@@ -141,7 +149,7 @@ typedef volatile struct {
 	ADCSRB_type adcsrb; // 0x7B
 	uint8_t fill2[3];
 	DIDR1_type didr1; // 0x7F
-} Atmega32U4AnalogComparator_TypeDef;
+} Atmega32U4_AnalogComparator;
 
 // JTAG Interface (JTAG)
 typedef volatile struct {
@@ -149,14 +157,14 @@ typedef volatile struct {
 	uint8_t fill[2];
 	MCUSR_type mcusr; // 0x54
 	MCUCR_type mcucr; // 0x55
-} Atmega32U4JtagInterface_TypeDef;
+} Atmega32U4_JtagInterface;
 
 // Phase Locked Loop (PLL)
 typedef volatile struct {
 	PLLCSR_type pllcsr; // 0x49
 	uint8_t fill[8];
 	PLLFRQ_type pllfrq; // 0x52
-} Atmega32U4PhaseLockedLoop_TypeDef;
+} Atmega32U4_PhaseLockedLoop;
 
 // CPU Register (CPU)
 typedef volatile struct {
@@ -184,17 +192,17 @@ typedef volatile struct {
 	CLKSEL0_type clksel0; // 0xC5
 	CLKSEL1_type clksel1; // 0xC6
 	CLKSTA_type clksta; // 0xC7
-} Atmega32U4CPURegister_TypeDef;
+} Atmega32U4_CPURegister;
 
 // Boot loader (BOOT_LOAD)
 typedef volatile struct {
 	SPMCSR_type spmcsr; // 0x57
-} Atmega32U4Bootloader_TypeDef;
+} Atmega32U4_Bootloader;
 
 // Watchdog Timer (WDT)
 typedef volatile struct {
 	WDTCSR_type wdtcr; // 0x60
-} Atmega32U4WatchdogTimer_TypeDef;
+} Atmega32U4_WatchdogTimer;
 
 // External Interrupts (EXINT)
 typedef volatile struct {
@@ -206,7 +214,7 @@ typedef volatile struct {
 	EICRA_type eicra; // 0x69
 	EICRB_type eicrb; // 0x6A
 	PCMSK0_type pcmsk0; // 0x6B
-} Atmega32U4ExternalInterrupt_TypeDef;
+} Atmega32U4_ExternalInterrupt;
 
 // Analog to Digital Converter (ADC)
 typedef volatile struct {
@@ -216,7 +224,7 @@ typedef volatile struct {
 	ADMUX_type admux; // 0x7C
 	DIDR2_type didr2; // 0x7D
 	DIDR0_type didr0; // 0x7E
-} Atmega32U4AnalogToDigitalConverter_TypeDef;
+} Atmega32U4_AnalogToDigitalConverter;
 
 // Timer/Counter, 16-bit (TC1)
 typedef volatile struct {
@@ -233,7 +241,7 @@ typedef volatile struct {
 	OCR1A_type ocr1a; // 0x88 0x89
 	OCR1B_type ocr1b; // 0x8A 0x8B
 	OCR1C_type ocr1c; // 0x8C 0x8D
-} Atmega32U4TimerCounter1_TypeDef;
+} Atmega32U4_TimerCounter1;
 
 // Timer/Counter, 16-bit (TC3)
 typedef volatile struct {
@@ -250,7 +258,7 @@ typedef volatile struct {
 	OCR3A_type ocr3a; // 0x98 0x99
 	OCR3B_type ocr3b; // 0x9A 0x9B
 	OCR3C_type ocr3c; // 0x9C 0x9D
-} Atmega32U4TimerCounter3_TypeDef;
+} Atmega32U4_TimerCounter3;
 
 // Two Wire Serial Interface (TWI)
 typedef volatile struct {
@@ -260,7 +268,7 @@ typedef volatile struct {
 	TWDR_type twdr; // 0xBB
 	TWCR_type twcr; // 0xBC
 	TWAMR_type twamr; // 0xBD
-} Atmega32U4TwoWireSerialInterface_TypeDef;
+} Atmega32U4_TwoWireSerialInterface;
 
 // Timer/Counter, 10-bit (TC4)
 typedef volatile struct {
@@ -282,7 +290,7 @@ typedef volatile struct {
 	OCR4D_type ocr4d; // 0xD2
 	uint8_t fill4;
 	DT4_type dt4; // 0xD4
-} Atmega32U4TimerCounter4_TypeDef;
+} Atmega32U4_TimerCounter4;
 
 // USART (USART1)
 typedef volatile struct {
@@ -292,7 +300,7 @@ typedef volatile struct {
 	UCSR1D_type ucsr1d; // 0xCB
 	UBRR1_type ubrr1; // 0xCC 0xCD
 	UDR1_type udr1; // 0xCE
-} Atmega32U4Usart1_TypeDef;
+} Atmega32U4_Usart1;
 
 // USB Device Register (USB_DEVICE)
 typedef volatile struct {
@@ -321,7 +329,7 @@ typedef volatile struct {
 	UEBCLX_type uebclx; // 0xF2
 	UEBCHX_type uebchx; // 0xF3
 	UEINT_type ueint; // 0xF4
-} Atmega32U4UsbDeviceRegister_TypeDef;
+} Atmega32U4_UsbDeviceRegister;
 
 #endif
 /***EOF***/
