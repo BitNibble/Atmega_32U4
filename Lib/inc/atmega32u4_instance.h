@@ -10,6 +10,32 @@ Date: 26092025
 
 /*** Library ***/
 #include "atmega32u4_register.h"
+#include <avr/sfr_defs.h>
+
+/*** Define & Macro ***/
+#define Atmega32U4_GPWR_Address 0x0000
+#define Atmega32U4_AnalogComparator_Address 0x0050
+#define Atmega32U4_AnalogToDigitalConverter_Address 0x0078
+#define Atmega32U4_Bootloader_Address 0x0057
+#define Atmega32U4_CPURegister_Address 0x003E
+#define Atmega32U4_Eeprom_Address 0x003F
+#define Atmega32U4_ExternalInterrupt_Address 0x003B
+#define Atmega32U4_PORTB_Address 0x0023
+#define Atmega32U4_PORTC_Address 0x0026
+#define Atmega32U4_PORTD_Address 0x0029
+#define Atmega32U4_PORTE_Address 0x002C
+#define Atmega32U4_PORTF_Address 0x002F
+#define Atmega32U4_JtagInterface_Address 0x0051
+#define Atmega32U4_PhaseLockedLoop_Address 0x0049
+#define Atmega32U4_SerialPeripherialInterface_Address 0x004C
+#define Atmega32U4_TimerCounter4_Address 0x0039
+#define Atmega32U4_TimerCounter1_Address 0x0036
+#define Atmega32U4_TimerCounter3_Address 0x0038
+#define Atmega32U4_TimerCounter0_Address 0x0035
+#define Atmega32U4_TwoWireSerialInterface_Address 0x00B8
+#define Atmega32U4_Usart1_Address 0x00C8
+#define Atmega32U4_UsbDeviceRegister_Address 0x00D7
+#define Atmega32U4_WatchdogTimer_Address 0x0060
 
 //		MAIN HARDWARE LAYER
 // GPWR
@@ -142,14 +168,14 @@ typedef volatile struct {
 	SMCR_type smcr; // 0x53
 	MCUSR_type mcusr; // 0x54
 	MCUCR_type mcucr; // 0x55
-	uint8_t fill3[5]; // (0x5B - 0x55) - 1
+	uint8_t fill3[5];
 	RAMPZ_type rampz; // 0x5B
 	uint8_t eind; // 0x5C
 	SP_type sp; // 0x5D 0x5E
 	SREG_type sreg; // 0x5F
 	uint8_t fill4;
 	CLKPR_type clkpr; // 0x61
-	uint8_t fill5[2]; // (0x64 - 0x61) - 1
+	uint8_t fill5[2];
 	PRR0_type prr0; // 0x64
 	PRR1_type prr1; // 0x65
 	OSCAL_type osccal; // 0x66
@@ -162,7 +188,7 @@ typedef volatile struct {
 
 // Boot loader (BOOT_LOAD)
 typedef volatile struct {
-	SPMCSR_type spmcsr; // 0x57 [spmcsr]
+	SPMCSR_type spmcsr; // 0x57
 } Atmega32U4Bootloader_TypeDef;
 
 // Watchdog Timer (WDT)
@@ -254,7 +280,7 @@ typedef volatile struct {
 	OCR4B_type ocr4b; // 0xD0
 	OCR4C_type ocr4c; // 0xD1
 	OCR4D_type ocr4d; // 0xD2
-	uint8_t fill4; // (0xD4 - 0xD2) - 1
+	uint8_t fill4;
 	DT4_type dt4; // 0xD4
 } Atmega32U4TimerCounter4_TypeDef;
 
@@ -274,7 +300,7 @@ typedef volatile struct {
 	USBCON_type usbcon; // 0xD8
 	USBSTA_type usbsta; // 0xD9
 	USBINT_type usbint; // 0xDA
-	uint8_t fill1[5]; // (0xE0 - 0xDA) - 1
+	uint8_t fill1[5];
 	UDCON_type udcon; //0xE0
 	UDINT_type udint; // 0xE1
 	UDIEN_type udien; // 0xE2

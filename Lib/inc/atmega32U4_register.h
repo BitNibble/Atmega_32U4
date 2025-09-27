@@ -68,7 +68,7 @@ typedef U_byte PORTF_type;
 // 0x35 - TIFR0 (Timer/Counter0 Interrupt Flag Register)
 typedef union {
 	struct {
-		uint8_t tov0  : 1;
+		uint8_t tov0 : 1;
 		uint8_t ocf0a : 1;
 		uint8_t ocf0b : 1;
 		uint8_t       : 5;
@@ -78,13 +78,13 @@ typedef union {
 // 0x36 - TIFR1 (Timer/Counter1 Interrupt Flag Register)
 typedef union {
 	struct {
-		uint8_t tov1  : 1;
+		uint8_t tov1 : 1;
 		uint8_t ocf1a : 1;
 		uint8_t ocf1b : 1;
 		uint8_t ocf1c : 1;
 		uint8_t       : 1;
-		uint8_t icf1  : 1;
-		uint8_t       : 2;
+		uint8_t icf1 : 1;
+		uint8_t      : 2;
 	} par;
 	uint8_t var;
 } TIFR1_type;
@@ -92,22 +92,22 @@ typedef union {
 // 0x38 - TIFR3 (Timer/Counter3 Interrupt Flag Register)
 typedef union {
 	struct {
-		uint8_t tov3  : 1;
+		uint8_t tov3 : 1;
 		uint8_t ocf3a : 1;
 		uint8_t ocf3b : 1;
 		uint8_t ocf3c : 1;
 		uint8_t       : 1;
-		uint8_t icf3  : 1;
-		uint8_t       : 2;
+		uint8_t icf3 : 1;
+		uint8_t      : 2;
 	} par;
 	uint8_t var;
 } TIFR3_type;
 // 0x39 - TIFR4 (Timer/Counter4 Interrupt Flag Register)
 typedef union {
 	struct {
-		uint8_t       : 2;
-		uint8_t tov4  : 1;
-		uint8_t       : 2;
+		uint8_t      : 2;
+		uint8_t tov4 : 1;
+		uint8_t      : 2;
 		uint8_t ocf4b : 1;
 		uint8_t ocf4a : 1;
 		uint8_t ocf4d : 1;
@@ -139,13 +139,13 @@ typedef union {
 // 0x3D - EIMSK (External Interrupt Mask Register)
 typedef union {
 	struct {
-		uint8_t int0  : 1;
-		uint8_t int1  : 1;
-		uint8_t int2  : 1;
-		uint8_t int3  : 1;
-		uint8_t       : 2;
-		uint8_t int6  : 1;
-		uint8_t       : 1;
+		uint8_t int0 : 1;
+		uint8_t int1 : 1;
+		uint8_t int2 : 1;
+		uint8_t int3 : 1;
+		uint8_t      : 2;
+		uint8_t int6 : 1;
+		uint8_t      : 1;
 	} par;
 	uint8_t var;
 } EIMSK_type;
@@ -154,8 +154,8 @@ typedef U_byte GPIOR0_type;
 // 0x3F - EECR (EEPROM Control Register)
 typedef union {
 	struct {
-		uint8_t eere  : 1;
-		uint8_t eepe  : 1;
+		uint8_t eere : 1;
+		uint8_t eepe : 1;
 		uint8_t eempe : 1;
 		uint8_t eerie : 1;
 		uint8_t eepm0 : 1;
@@ -194,7 +194,7 @@ typedef union {
 typedef union {
 	struct {
 		uint8_t psrsync : 1;
-		uint8_t psrasy  : 1;
+		uint8_t psrasy : 1;
 		uint8_t     : 5;
 		uint8_t tsm : 1;
 	} par;
@@ -248,14 +248,14 @@ typedef U_byte GPIOR2_type;
 // 0x4C - SPCR (SPI Control Register)
 typedef union {
 	struct {
-		uint8_t spr0  : 1;
-		uint8_t spr1  : 1;
-		uint8_t cpha  : 1;
-		uint8_t cpol  : 1;
-		uint8_t mstr  : 1;
-		uint8_t dord  : 1;
-		uint8_t spe   : 1;
-		uint8_t spie  : 1;
+		uint8_t spr0 : 1;
+		uint8_t spr1 : 1;
+		uint8_t cpha : 1;
+		uint8_t cpol : 1;
+		uint8_t mstr : 1;
+		uint8_t dord : 1;
+		uint8_t spe : 1;
+		uint8_t spie : 1;
 	} par;
 	uint8_t var;
 } SPCR_type;
@@ -264,8 +264,8 @@ typedef union {
 	struct {
 		uint8_t spi2x : 1;
 		uint8_t       : 5;
-		uint8_t wcol  : 1;
-		uint8_t spif  : 1;
+		uint8_t wcol : 1;
+		uint8_t spif : 1;
 	} par;
 	uint8_t var;
 } SPSR_type;
@@ -275,14 +275,14 @@ typedef U_byte SPDR_type;
 // 0x50 - ACSR (Analog Comparator Control and Status Register)
 typedef union {
 	struct {
-		uint8_t acis0  : 1;
-		uint8_t acis1  : 1;
-		uint8_t acic   : 1;
-		uint8_t acie   : 1;
-		uint8_t aci    : 1;
-		uint8_t aco    : 1;
-		uint8_t acbg   : 1;
-		uint8_t acd    : 1;
+		uint8_t acis0 : 1;
+		uint8_t acis1 : 1;
+		uint8_t acic : 1;
+		uint8_t acie : 1;
+		uint8_t aci : 1;
+		uint8_t aco : 1;
+		uint8_t acbg : 1;
+		uint8_t acd : 1;
 	} par;
 	uint8_t var;
 } ACSR_type;
@@ -367,7 +367,7 @@ typedef union {
 	struct {
 		uint8_t rampz0 : 1;
 		uint8_t rampz1 : 1;
-		uint8_t  : 6;
+		uint8_t        : 6;
 	} par;
 	uint8_t var;
 } RAMPZ_type;
@@ -387,14 +387,14 @@ typedef U_word SP_type;
 // 0x5F - SREG (Status Register)
 typedef union {
 	struct {
-		uint8_t c  : 1;
-		uint8_t z  : 1;
-		uint8_t n  : 1;
-		uint8_t v  : 1;
-		uint8_t s  : 1;
-		uint8_t h  : 1;
-		uint8_t t  : 1;
-		uint8_t i  : 1;
+		uint8_t c : 1;
+		uint8_t z : 1;
+		uint8_t n : 1;
+		uint8_t v : 1;
+		uint8_t s : 1;
+		uint8_t h : 1;
+		uint8_t t : 1;
+		uint8_t i : 1;
 	} par;
 	uint8_t var;
 } SREG_type;
@@ -463,7 +463,7 @@ typedef union {
 typedef union {
 	struct {
 		uint8_t pcie0 : 1;
-		uint8_t        : 7;
+		uint8_t       : 7;
 	} par;
 	uint8_t var;
 } PCICR_type;
@@ -505,7 +505,7 @@ typedef union {
 // 0x6E - TIMSK0 (Timer/Counter0 Interrupt Mask Register)
 typedef union {
 	struct {
-		uint8_t toie0  : 1;
+		uint8_t toie0 : 1;
 		uint8_t ocie0a : 1;
 		uint8_t ocie0b : 1;
 		uint8_t        : 5;
@@ -515,7 +515,7 @@ typedef union {
 // 0x6F - TIMSK1 (Timer/Counter1 Interrupt Mask Register)
 typedef union {
 	struct {
-		uint8_t toie1  : 1;
+		uint8_t toie1 : 1;
 		uint8_t ocie1a : 1;
 		uint8_t ocie1b : 1;
 		uint8_t ocie1c : 1;
@@ -529,7 +529,7 @@ typedef union {
 // 0x71 - TIMSK3 (Timer/Counter3 Interrupt Mask Register)
 typedef union {
 	struct {
-		uint8_t toie3  : 1;
+		uint8_t toie3 : 1;
 		uint8_t ocie3a : 1;
 		uint8_t ocie3b : 1;
 		uint8_t ocie3c : 1;
@@ -641,8 +641,8 @@ typedef union {
 // 0x80 - TCCR1A (Timer/Counter1 Control Register A)
 typedef union {
 	struct {
-		uint8_t wgm10  : 1;
-		uint8_t wgm11  : 1;
+		uint8_t wgm10 : 1;
+		uint8_t wgm11 : 1;
 		uint8_t com1c0 : 1;
 		uint8_t com1c1 : 1;
 		uint8_t com1b0 : 1;
@@ -728,8 +728,8 @@ typedef U_word OCR1C_type;
 // 0x90 - TCCR3A (Timer/Counter3 Control Register A)
 typedef union {
 	struct {
-		uint8_t wgm30  : 1;
-		uint8_t wgm31  : 1;
+		uint8_t wgm30 : 1;
+		uint8_t wgm31 : 1;
 		uint8_t com3c0 : 1;
 		uint8_t com3c1 : 1;
 		uint8_t com3b0 : 1;
@@ -853,7 +853,7 @@ typedef union {
 typedef union {
 	struct {
 		uint8_t twgce : 1;
-		uint8_t twa  : 7;
+		uint8_t twa   : 7;
 	} par;
 	uint8_t var;
 } TWAR_type;
@@ -908,8 +908,8 @@ typedef union {
 // 0xC0 - TCCR4A (Timer/Counter4 Control Register A)
 typedef union {
 	struct {
-		uint8_t pwm4b  : 1;
-		uint8_t pwm4a  : 1;
+		uint8_t pwm4b : 1;
+		uint8_t pwm4a : 1;
 		uint8_t foc4b : 1;
 		uint8_t foc4a : 1;
 		uint8_t com4b0 : 1;
@@ -1003,19 +1003,19 @@ typedef union {
         uint8_t dor1  : 1;
         uint8_t fe1   : 1;
         uint8_t udre1 : 1;
-        uint8_t txc1  : 1;
-        uint8_t rxc1  : 1;
+        uint8_t txc1 : 1;
+        uint8_t rxc1 : 1;
     } par;
     uint8_t var;
 } UCSR1A_type;
 // 0xC9 - UCSR1B (USART Control and Status Register B)
 typedef union {
     struct {
-        uint8_t txb81  : 1;
-        uint8_t rxb81  : 1;
+        uint8_t txb81 : 1;
+        uint8_t rxb81 : 1;
         uint8_t ucsz12 : 1;
-        uint8_t txen1  : 1;
-        uint8_t rxen1  : 1;
+        uint8_t txen1 : 1;
+        uint8_t rxen1 : 1;
         uint8_t udrie1 : 1;
         uint8_t txcie1 : 1;
         uint8_t rxcie1 : 1;
@@ -1054,7 +1054,7 @@ typedef U_byte UBRR1L_type;
 typedef union {
 	struct {
 		uint8_t brr1h : 4;
-		uint8_t   : 4;	
+		uint8_t       : 4;	
 	} par;
 	uint8_t var;	
 } UBRR1H_type;
@@ -1239,7 +1239,7 @@ typedef union {
 typedef union {
 	struct {
 		uint8_t eprst : 7;
-		uint8_t  : 1;
+		uint8_t       : 1;
 	} par;
 	uint8_t var;
 } UERST_type;
