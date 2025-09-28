@@ -337,9 +337,9 @@ typedef union {
 	struct {
 		uint8_t ivce : 1;
 		uint8_t ivsel : 1;
-		uint8_t     : 2;
+		uint8_t : 2;
 		uint8_t pud : 1;
-		uint8_t     : 2;
+		uint8_t : 2;
 		uint8_t jtd : 1;
 	} par;
 	uint8_t var;
