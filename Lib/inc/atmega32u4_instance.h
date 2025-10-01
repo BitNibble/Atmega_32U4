@@ -336,29 +336,29 @@ typedef volatile struct {
 /*******************************************************************/
 typedef struct {
 	//		Second Layer
-	Atmega32U4_GPIAR* gpiar;
-	Atmega32U4_AnalogComparator* ac;
-	Atmega32U4_AnalogToDigitalConverter* adc;
-	Atmega32U4_Bootloader* boot_load;
-	Atmega32U4_CPURegister* cpu;
-	Atmega32U4_Eeprom* eeprom;
-	Atmega32U4_ExternalInterrupt* exint;
-	Atmega32U4_PORTB* portb;
-	Atmega32U4_PORTC* portc;
-	Atmega32U4_PORTD* portd;
-	Atmega32U4_PORTE* porte;
-	Atmega32U4_PORTF* portf;
-	Atmega32U4_JtagInterface* jtag;
-	Atmega32U4_PhaseLockedLoop* pll;
-	Atmega32U4_SerialPeripherialInterface* spi;
-	Atmega32U4_TimerCounter4* tc4;
-	Atmega32U4_TimerCounter1* tc1;
-	Atmega32U4_TimerCounter3* tc3;
-	Atmega32U4_TimerCounter0* tc0;
-	Atmega32U4_TwoWireSerialInterface* twi;
-	Atmega32U4_Usart1* usart1;
-	Atmega32U4_UsbDeviceRegister* usb_device;
-	Atmega32U4_WatchdogTimer* wdt;
+	Atmega32U4_GPIAR* const gpiar;
+	Atmega32U4_AnalogComparator* const ac;
+	Atmega32U4_AnalogToDigitalConverter* const adc;
+	Atmega32U4_Bootloader* const boot_load;
+	Atmega32U4_CPURegister* const cpu;
+	Atmega32U4_Eeprom* const eeprom;
+	Atmega32U4_ExternalInterrupt* const exint;
+	Atmega32U4_PORTB* const portb;
+	Atmega32U4_PORTC* const portc;
+	Atmega32U4_PORTD* const portd;
+	Atmega32U4_PORTE* const porte;
+	Atmega32U4_PORTF* const portf;
+	Atmega32U4_JtagInterface* const jtag;
+	Atmega32U4_PhaseLockedLoop* const pll;
+	Atmega32U4_SerialPeripherialInterface* const spi;
+	Atmega32U4_TimerCounter4* const tc4;
+	Atmega32U4_TimerCounter1* const tc1;
+	Atmega32U4_TimerCounter3* const tc3;
+	Atmega32U4_TimerCounter0* const tc0;
+	Atmega32U4_TwoWireSerialInterface* const twi;
+	Atmega32U4_Usart1* const usart1;
+	Atmega32U4_UsbDeviceRegister* const usb_device;
+	Atmega32U4_WatchdogTimer* const wdt;
 } ATMEGA32U4;
 
 #endif
