@@ -1,10 +1,10 @@
-/************************************************************************
+/********************************************************************
 	ATMEGA 32U4 INSTANCE
 Author: <sergio.salazar.santos@gmail.com>
 License: GNU General Public License
 Hardware: Atmega32U4
 Date: 26092025
-************************************************************************/
+********************************************************************/
 #ifndef _ATMEGA32U4_INSTANCE_H_
 	#define _ATMEGA32U4_INSTANCE_H_
 
@@ -330,6 +330,36 @@ typedef volatile struct {
 	UEBCHX_type uebchx; // 0xF3
 	UEINT_type ueint; // 0xF4
 } Atmega32U4_UsbDeviceRegister;
+
+/*******************************************************************/
+/********************** ATMEGA 32U4 IMAGE **************************/
+/*******************************************************************/
+typedef struct {
+	//		Second Layer
+	Atmega32U4_GPIAR* gpiar;
+	Atmega32U4_AnalogComparator* ac;
+	Atmega32U4_AnalogToDigitalConverter* adc;
+	Atmega32U4_Bootloader* boot_load;
+	Atmega32U4_CPURegister* cpu;
+	Atmega32U4_Eeprom* eeprom;
+	Atmega32U4_ExternalInterrupt* exint;
+	Atmega32U4_PORTB* portb;
+	Atmega32U4_PORTC* portc;
+	Atmega32U4_PORTD* portd;
+	Atmega32U4_PORTE* porte;
+	Atmega32U4_PORTF* portf;
+	Atmega32U4_JtagInterface* jtag;
+	Atmega32U4_PhaseLockedLoop* pll;
+	Atmega32U4_SerialPeripherialInterface* spi;
+	Atmega32U4_TimerCounter4* tc4;
+	Atmega32U4_TimerCounter1* tc1;
+	Atmega32U4_TimerCounter3* tc3;
+	Atmega32U4_TimerCounter0* tc0;
+	Atmega32U4_TwoWireSerialInterface* twi;
+	Atmega32U4_Usart1* usart1;
+	Atmega32U4_UsbDeviceRegister* usb_device;
+	Atmega32U4_WatchdogTimer* wdt;
+} ATMEGA32U4;
 
 #endif
 /***EOF***/

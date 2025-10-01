@@ -6,9 +6,9 @@ Hardware: Atmega32U4
 Date: 26092025
 *********************************************************************/
 /*** File Library ***/
-#include "atmega32u4mapping.h"
+#include "atmega32u4.h"
 
-/***Internal State***/
+/*** Internal State ***/
 static ATMEGA32U4 atmega32u4_setup = {
 	// GPWR
 	.gpiar = (Atmega32U4_GPIAR*) Atmega32U4_GPIAR_Address,
@@ -58,7 +58,7 @@ static ATMEGA32U4 atmega32u4_setup = {
 	.wdt = (Atmega32U4_WatchdogTimer*) Atmega32U4_WatchdogTimer_Address,
 };
 
-ATMEGA32U4 atmega32u4(void) { return (ATMEGA32U4) atmega32u4_setup; }
+ATMEGA32U4* atmega32u4(void) { return (ATMEGA32U4*) &atmega32u4_setup; }
 
 // COMMON
 uint16_t ReadHLByte(U_word reg)
