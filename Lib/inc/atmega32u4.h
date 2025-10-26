@@ -13,8 +13,17 @@ Date: 26092025
 	#error "This library requires AVR-GCC 3.4 or later, update to newer AVR-GCC compiler !"
 #endif
 
-/*** Global Library ***/
+/*** Library ***/
+#include <avr/io.h>
 #include "atmega32U4_instance.h"
+#include <avr/boot.h>
+#include <avr/fuse.h>
+#include <avr/wdt.h>
+#include <avr/eeprom.h>
+#include <avr/pgmspace.h>
+#include <avr/sleep.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 
 /*******************************************************************/
 /********************** ATMEGA 32U4 IMAGE **************************/
