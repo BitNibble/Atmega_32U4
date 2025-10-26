@@ -13,6 +13,11 @@ Date: 26092025
 	#error "This library requires AVR-GCC 3.4 or later, update to newer AVR-GCC compiler !"
 #endif
 
+/*** Working Frequency ***/
+#ifndef F_CPU
+	#define F_CPU 16000000UL
+#endif
+
 /*** Library ***/
 #include <avr/io.h>
 #include "atmega32U4_instance.h"
