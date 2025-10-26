@@ -58,7 +58,7 @@ static ATMEGA32U4 atmega32u4_setup = {
 	.wdt = (Atmega32U4_WatchdogTimer*) Atmega32U4_WatchdogTimer_Address,
 };
 
-ATMEGA32U4* atmega32u4(void) { return (ATMEGA32U4*) &atmega32u4_setup; }
+ATMEGA32U4* dev(void) { return (ATMEGA32U4*) &atmega32u4_setup; }
 
 // COMMON
 uint16_t ReadHLByte(U_word reg)

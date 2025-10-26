@@ -47,7 +47,7 @@ typedef struct {
 } ATMEGA32U4;
 
 /*** Global Header ***/
-ATMEGA32U4* atmega32u4(void);
+ATMEGA32U4* dev(void);
 
 /*** Common ***/
 uint16_t ReadHLByte(U_word reg);
