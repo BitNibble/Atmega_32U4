@@ -16,6 +16,36 @@ Date: 26092025
 /*** Global Library ***/
 #include "atmega32U4_instance.h"
 
+/*******************************************************************/
+/********************** ATMEGA 32U4 IMAGE **************************/
+/*******************************************************************/
+typedef struct {
+	//		Second Layer
+	Atmega32U4_GPIAR* const gpiar;
+	Atmega32U4_AnalogComparator* const ac;
+	Atmega32U4_AnalogToDigitalConverter* const adc;
+	Atmega32U4_Bootloader* const boot_load;
+	Atmega32U4_CPURegister* const cpu;
+	Atmega32U4_Eeprom* const eeprom;
+	Atmega32U4_ExternalInterrupt* const exint;
+	Atmega32U4_PORTB* const portb;
+	Atmega32U4_PORTC* const portc;
+	Atmega32U4_PORTD* const portd;
+	Atmega32U4_PORTE* const porte;
+	Atmega32U4_PORTF* const portf;
+	Atmega32U4_JtagInterface* const jtag;
+	Atmega32U4_PhaseLockedLoop* const pll;
+	Atmega32U4_SerialPeripherialInterface* const spi;
+	Atmega32U4_TimerCounter4* const tc4;
+	Atmega32U4_TimerCounter1* const tc1;
+	Atmega32U4_TimerCounter3* const tc3;
+	Atmega32U4_TimerCounter0* const tc0;
+	Atmega32U4_TwoWireSerialInterface* const twi;
+	Atmega32U4_Usart1* const usart1;
+	Atmega32U4_UsbDeviceRegister* const usb_device;
+	Atmega32U4_WatchdogTimer* const wdt;
+} ATMEGA32U4;
+
 /*** Global Header ***/
 ATMEGA32U4* atmega32u4(void);
 
