@@ -15,7 +15,7 @@ void toggle(void){
 int main(void) {
 	dev()->portc->ddr.par.bit7 = 1;
 	
-	tc1_enable(4,2);
+	tc1_enable(3,2);
 	
 	tc1()->compareA(7811);
 	

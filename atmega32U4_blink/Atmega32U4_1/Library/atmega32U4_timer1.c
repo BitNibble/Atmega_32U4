@@ -10,10 +10,13 @@ Date:     26/10/2025
 
 /*** Procedure and Function declaration ***/
 void TIMER_COUNTER1_wavegenmode(unsigned char wavegenmode);
+void TIMER_COUNTER1_clear_wavegenmode(void);
 void TIMER_COUNTER1_interrupt(unsigned char interrupt);
+void TIMER_COUNTER1_clear_interrupt(void);
 void TIMER_COUNTER1_compoutmodeA(unsigned char compoutmode);
 void TIMER_COUNTER1_compoutmodeB(unsigned char compoutmode);
 void TIMER_COUNTER1_compoutmodeC(unsigned char compoutmode);
+void TIMER_COUNTER1_clear_compoutmode(void);
 void TIMER_COUNTER1_compareA(uint16_t compare);
 void TIMER_COUNTER1_compareB(uint16_t compare);
 void TIMER_COUNTER1_compareC(uint16_t compare);
@@ -32,10 +35,13 @@ static TC1_Handler atmega32u4_tc1_setup = {
     },
     // V-table
     .wavegenmode = TIMER_COUNTER1_wavegenmode,
+	.clear_wavegenmode = TIMER_COUNTER1_clear_wavegenmode,
     .interrupt   = TIMER_COUNTER1_interrupt,
+	.clear_interrupt   = TIMER_COUNTER1_clear_interrupt,
     .compoutmodeA = TIMER_COUNTER1_compoutmodeA,
     .compoutmodeB = TIMER_COUNTER1_compoutmodeB,
     .compoutmodeC = TIMER_COUNTER1_compoutmodeC,
+	.clear_compoutmode = TIMER_COUNTER1_clear_compoutmode,
     .compareA = TIMER_COUNTER1_compareA,
     .compareB = TIMER_COUNTER1_compareB,
     .compareC = TIMER_COUNTER1_compareC,
@@ -52,102 +58,73 @@ void tc1_enable(unsigned char wavegenmode, unsigned char interrupt)
 	// Power up Timer 1
 	dev()->cpu->prr0.var &= ~(1 << 3); // 0n
 
-    TIMER_COUNTER1_wavegenmode(wavegenmode);
-    TIMER_COUNTER1_interrupt(interrupt);
+	/* Clear Waveform Generation Mode */
+	TIMER_COUNTER1_clear_wavegenmode();
+	
+	/* Clear interrupts */
+	TIMER_COUNTER1_clear_interrupt();
+	
+	/* Clear Compare Output Mode */
+	TIMER_COUNTER1_clear_compoutmode();
 
-    /* initialize compare registers to max (16-bit) */
+    /* Clear Output Compare Registers */
     dev()->tc1->ocr1a = WriteHLByte(~0);
     dev()->tc1->ocr1b = WriteHLByte(~0);
     dev()->tc1->ocr1c = WriteHLByte(~0);
+	
+	TIMER_COUNTER1_wavegenmode(wavegenmode);
+	TIMER_COUNTER1_interrupt(interrupt);
 }
-
 TC1_Handler* tc1(void){ return &atmega32u4_tc1_setup; }
 
 /*** Procedure and Function definition ***/
 void TIMER_COUNTER1_wavegenmode(unsigned char wavegenmode)
 {
-    /* clear WGM bits on TCCR1A and TCCR1B */
-    dev()->tc1->tccr1a.var &= ~((1 << WGM11) | (1 << WGM10));
-    dev()->tc1->tccr1b.var &= ~((1 << WGM13) | (1 << WGM12));
-
     switch(wavegenmode){
         case 0: break; /* Normal */
         case 1: dev()->tc1->tccr1a.var |= (1 << WGM10); break;
         case 2: dev()->tc1->tccr1a.var |= (1 << WGM11); break;
-        case 3: dev()->tc1->tccr1a.var |= (1 << WGM11) | (1 << WGM10); break;
-        case 4: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
-        case 5: dev()->tc1->tccr1a.var |= (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM12); break;
-        case 6: dev()->tc1->tccr1a.var |= (1 << WGM11); dev()->tc1->tccr1b.var |= (1 << WGM12); break;
-        case 7: dev()->tc1->tccr1a.var |= (1 << WGM11) | (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM12); break;
-        case 8: dev()->tc1->tccr1b.var |= (1 << WGM13); break;
-        case 9: dev()->tc1->tccr1a.var |= (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM13); break;
-        case 10: dev()->tc1->tccr1a.var |= (1 << WGM11); dev()->tc1->tccr1b.var |= (1 << WGM13); break;
-        case 11: dev()->tc1->tccr1a.var |= (1 << WGM11) | (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM13); break;
-        case 12: dev()->tc1->tccr1b.var |= (1 << WGM13) | (1 << WGM12); break;
-        case 13: dev()->tc1->tccr1a.var |= (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM13) | (1 << WGM12); break;
-        case 14: dev()->tc1->tccr1a.var |= (1 << WGM11); dev()->tc1->tccr1b.var |= (1 << WGM13) | (1 << WGM12); break;
-        case 15: dev()->tc1->tccr1a.var |= (1 << WGM11) | (1 << WGM10); dev()->tc1->tccr1b.var |= (1 << WGM13) | (1 << WGM12); break;
+        case 3: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
+        case 4: dev()->tc1->tccr1b.var |= (1 << WGM13); break;
         default: break;
     }
+}
+void TIMER_COUNTER1_clear_wavegenmode(void)
+{
+	/* Clear Waveform Generation Mode */
+	dev()->tc1->tccr1a.var &= ~((1 << WGM11) | (1 << WGM10));
+	dev()->tc1->tccr1b.var &= ~((1 << WGM13) | (1 << WGM12));
 }
 
 void TIMER_COUNTER1_interrupt(unsigned char interrupt)
 {
-    /* Clear Timer1 interrupts */
-    dev()->tc1->timsk1.var &= ~ ((1 << OCIE1A) | (1 << OCIE1B) | (1 << TOIE1));
-    dev()->tc1->timsk1.var &= ~(1 << OCIE1C);
-
     switch(interrupt){
         case 0: break;
         case 1:
             dev()->tc1->timsk1.var |= (1 << TOIE1);
-            dev()->cpu->sreg.var |= 1 << 7;
             break;
         case 2:
             dev()->tc1->timsk1.var |= (1 << OCIE1A);
-            dev()->cpu->sreg.var |= 1 << 7;
             break;
         case 3:
             dev()->tc1->timsk1.var |= (1 << OCIE1B);
-            dev()->cpu->sreg.var |= 1 << 7;
             break;
         case 4:
             dev()->tc1->timsk1.var |= (1 << OCIE1C);
-            dev()->cpu->sreg.var |= 1 << 7;
             break;
-        case 6:
-            dev()->tc1->timsk1.var |= (1 << OCIE1A) | (1 << TOIE1);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 7:
-            dev()->tc1->timsk1.var |= (1 << OCIE1B) | (1 << TOIE1);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 8:
-            dev()->tc1->timsk1.var |= (1 << TOIE1);
-            dev()->tc1->timsk1.var |= (1 << OCIE1C);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 9:
-            dev()->tc1->timsk1.var |= (1 << TOIE1);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 10:
-            dev()->tc1->timsk1.var |= (1 << OCIE1A) | (1 << OCIE1B) | (1 << TOIE1);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 11:
-            dev()->tc1->timsk1.var |= (1 << OCIE1A) | (1 << OCIE1B) | (1 << TOIE1);
-            dev()->tc1->timsk1.var |= (1 << OCIE1C);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        case 12:
-            dev()->tc1->timsk1.var |= (1 << OCIE1A) | (1 << OCIE1B);
-            dev()->tc1->timsk1.var |= (1 << OCIE1C);
-            dev()->cpu->sreg.var |= 1 << 7;
-            break;
-        default: break;
+        case 5:
+			dev()->tc1->timsk1.var |= (1 << ICIE1);
+			break;
+        default:
+		    dev()->tc1->timsk1.var |= (1 << TOIE1);
+			break;
     }
+	dev()->cpu->sreg.var |= 1 << 7;
+}
+void TIMER_COUNTER1_clear_interrupt(void)
+{
+	/* Clear interrupts */
+	dev()->tc1->timsk1.var &= ~ ((1 << OCIE1A) | (1 << OCIE1B) | (1 << OCIE1C) | (1 << TOIE1));
 }
 
 uint8_t TIMER_COUNTER1_start(unsigned int prescaler)
@@ -171,7 +148,6 @@ uint8_t TIMER_COUNTER1_start(unsigned int prescaler)
 
 void TIMER_COUNTER1_compoutmodeA(unsigned char compoutmode)
 {
-    dev()->tc1->tccr1a.var &= ~(3 << COM1A0);
     switch(compoutmode){
         case 0: break;
         case 1:
@@ -182,16 +158,11 @@ void TIMER_COUNTER1_compoutmodeA(unsigned char compoutmode)
             dev()->portb->ddr.var |= 0x20;
             dev()->tc1->tccr1a.var |= (1 << COM1A1);
             break;
-        case 3:
-            dev()->portb->ddr.var |= 0x20;
-            dev()->tc1->tccr1a.var |= (1 << COM1A0) | (1 << COM1A1);
-            break;
         default: break;
     }
 }
 void TIMER_COUNTER1_compoutmodeB(unsigned char compoutmode)
 {
-    dev()->tc1->tccr1a.var &= ~(3 << COM1B0);
     switch(compoutmode){
         case 0: break;
         case 1:
@@ -202,16 +173,11 @@ void TIMER_COUNTER1_compoutmodeB(unsigned char compoutmode)
             dev()->portb->ddr.var |= 0x40;
             dev()->tc1->tccr1a.var |= (1 << COM1B1);
             break;
-        case 3:
-            dev()->portb->ddr.var |= 0x40;
-            dev()->tc1->tccr1a.var |= (1 << COM1B0) | (1 << COM1B1);
-            break;
         default: break;
     }
 }
 void TIMER_COUNTER1_compoutmodeC(unsigned char compoutmode)
 {
-    dev()->tc1->tccr1a.var &= ~(3 << COM1C0);
     switch(compoutmode){
         case 0: break;
         case 1:
@@ -222,12 +188,15 @@ void TIMER_COUNTER1_compoutmodeC(unsigned char compoutmode)
             dev()->portb->ddr.var |= 0x80;
             dev()->tc1->tccr1a.var |= (1 << COM1C1);
             break;
-        case 3:
-            dev()->portb->ddr.var |= 0x80;
-            dev()->tc1->tccr1a.var |= (1 << COM1C0) | (1 << COM1C1);
-            break;
         default: break;
     }
+}
+void TIMER_COUNTER1_clear_compoutmode(void)
+{
+	/* Clear Compare Output Mode */
+	dev()->tc1->tccr1a.var &= ~(3 << COM1A0);
+	dev()->tc1->tccr1a.var &= ~(3 << COM1B0);
+	dev()->tc1->tccr1a.var &= ~(3 << COM1C0);
 }
 
 void TIMER_COUNTER1_compareA(uint16_t compare)

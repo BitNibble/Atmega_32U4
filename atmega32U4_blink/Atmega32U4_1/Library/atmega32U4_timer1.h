@@ -31,13 +31,16 @@ typedef struct {
 
     /*** V-Table ***/
     void (*wavegenmode)(unsigned char wavegenmode);
+	void (*clear_wavegenmode)(void);
     void (*interrupt)(unsigned char interrupt);
-    void    (*compoutmodeA)(uint8_t mode);
-    void    (*compoutmodeB)(uint8_t mode);
-    void    (*compoutmodeC)(uint8_t mode);
-    void    (*compareA)(uint16_t value);
-    void    (*compareB)(uint16_t value);
-    void    (*compareC)(uint16_t value);
+	void (*clear_interrupt)(void);
+    void (*compoutmodeA)(uint8_t mode);
+    void (*compoutmodeB)(uint8_t mode);
+    void (*compoutmodeC)(uint8_t mode);
+	void (*clear_compoutmode)(void);
+    void (*compareA)(uint16_t value);
+    void (*compareB)(uint16_t value);
+    void (*compareC)(uint16_t value);
     uint8_t (*start)(uint16_t prescaler);
     uint8_t (*stop)(void);
 } TC1_Handler;
