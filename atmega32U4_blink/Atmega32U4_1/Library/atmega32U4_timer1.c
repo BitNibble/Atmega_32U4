@@ -48,6 +48,9 @@ uint8_t timer1_state;
 void tc1_enable(unsigned char wavegenmode, unsigned char interrupt)
 {
     timer1_state = 0;
+	
+	// Power up Timer 1
+	dev()->cpu->prr0.var &= ~(1 << 3); // 0n
 
     TIMER_COUNTER1_wavegenmode(wavegenmode);
     TIMER_COUNTER1_interrupt(interrupt);
