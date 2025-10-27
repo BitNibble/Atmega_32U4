@@ -9,8 +9,8 @@ Comment:
 	stable
 *************************************************************************/
 /*** File Library ***/
-#include "atmega32u4mapping.h"
-#include "atmega32u4uart.h"
+#include "atmega32U4.h"
+#include "atmega32U4_uart.h"
 #include "buffer.h"
 #include <util/delay.h>
 

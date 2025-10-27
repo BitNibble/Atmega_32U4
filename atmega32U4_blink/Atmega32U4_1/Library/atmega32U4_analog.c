@@ -1,16 +1,13 @@
 /*************************************************************************
 	ANALOG
-Author: Sergio Manuel Santos
-	<sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32u4
-Date: 03122023
-Comment:
-	Very Stable
+Date:     03122023
 *************************************************************************/
 /*** File Library ***/
-#include "atmega32u4mapping.h"
-#include "atmega32u4analog.h"
+#include "atmega32U4.h"
+#include "atmega32U4_analog.h"
 #include <stdarg.h>
 
 /*** File Constant & Macro ***/
@@ -46,12 +43,12 @@ ANALOG ANALOGenable( uint8_t Vreff, uint8_t Divfactor, int n_channel, ... )
 // setup, and list of channels to be probed
 {
 	uint8_t tSREG;
-	atmega32u4 = ATMEGA32U4enable();
+	
 	va_list list;
 	int i;
 
-	tSREG = atmega32u4.cpu.reg->sreg;
-	atmega32u4.cpu.reg->sreg &= ~ (1 << GLOBAL_INTERRUPT_ENABLE);
+	tSREG = dev()->cpu->sreg.var;
+	dev()->cpu->sreg.var &= ~ (1 << GLOBAL_INTERRUPT_ENABLE);
 	
 	ADC_N_CHANNEL = n_channel;
 	ADC_SELECTOR = 0;
@@ -61,17 +58,17 @@ ANALOG ANALOGenable( uint8_t Vreff, uint8_t Divfactor, int n_channel, ... )
 	//V table
 	analog.read = ANALOG_read;
 	
-	atmega32u4.adc.reg->admux &= ~(3 << REFS0);
+	dev()->adc->admux.var &= ~(3 << REFS0);
 	switch( Vreff ){
 		case 0:
 			analog.par.VREFF = 0;
 		break;
 		case 1:
-			atmega32u4.adc.reg->admux |=	(1 << REFS0);
+			dev()->adc->admux.var |=	(1 << REFS0);
 			analog.par.VREFF = 1;
 		break;
 		case 3:
-			atmega32u4.adc.reg->admux |=	(3 << REFS0);
+			dev()->adc->admux.var |=	(3 << REFS0);
 			analog.par.VREFF = 3;
 		break;
 		default:
@@ -79,61 +76,61 @@ ANALOG ANALOGenable( uint8_t Vreff, uint8_t Divfactor, int n_channel, ... )
 		break;
 	}
 	
-	atmega32u4.adc.reg->admux &= ~(1 << ADLAR);
+	dev()->adc->admux.var &= ~(1 << ADLAR);
 	
 	va_start(list, n_channel);
 	for( i = 0; i < n_channel; i++ ){
 		ADC_CHANNEL_GAIN[i] = va_arg(list, int);
 	}
 	va_end(list);
-	atmega32u4.adc.reg->admux &= ~MUX_MASK;
-	atmega32u4.adc.reg->admux |= (MUX_MASK & ADC_CHANNEL_GAIN[ADC_SELECTOR]);
+	dev()->adc->admux.var &= ~MUX_MASK;
+	dev()->adc->admux.var |= (MUX_MASK & ADC_CHANNEL_GAIN[ADC_SELECTOR]);
 	
-	atmega32u4.adc.reg->adcsra |= (1 << ADEN);
-	atmega32u4.adc.reg->adcsra |= (1 << ADSC);
-	atmega32u4.adc.reg->adcsra &= ~(1 << ADATE);
-	atmega32u4.adc.reg->adcsrb &= ~(7 << ADTS0);
-	atmega32u4.adc.reg->adcsra |= (1 << ADIE);
+	dev()->adc->adcsra.var |= (1 << ADEN);
+	dev()->adc->adcsra.var |= (1 << ADSC);
+	dev()->adc->adcsra.var &= ~(1 << ADATE);
+	dev()->adc->adcsrb.var &= ~(7 << ADTS0);
+	dev()->adc->adcsra.var |= (1 << ADIE);
 	
-	atmega32u4.adc.reg->adcsra &= ~(7 << ADPS0);
+	dev()->adc->adcsra.var &= ~(7 << ADPS0);
 	switch( Divfactor ){
 		case 2: // 1
 			analog.par.DIVISION_FACTOR = 2;
 		break;
 		case 4: // 2
-			atmega32u4.adc.reg->adcsra |= (1 << ADPS1);
+			dev()->adc->adcsra.var |= (1 << ADPS1);
 			analog.par.DIVISION_FACTOR = 4;
 		break;
 		case 8: // 3
-			atmega32u4.adc.reg->adcsra |= (3 << ADPS0);
+			dev()->adc->adcsra.var |= (3 << ADPS0);
 			analog.par.DIVISION_FACTOR = 8;
 		break;
 		case 16: // 4
-			atmega32u4.adc.reg->adcsra |= (1 << ADPS2);
+			dev()->adc->adcsra.var |= (1 << ADPS2);
 			analog.par.DIVISION_FACTOR	=	16;
 		break;
 		case 32: // 5
-			atmega32u4.adc.reg->adcsra |= (5 << ADPS0);
+			dev()->adc->adcsra.var |= (5 << ADPS0);
 			analog.par.DIVISION_FACTOR = 32;
 		break;
 		case 64: // 6
-			atmega32u4.adc.reg->adcsra |= (6 << ADPS0);
+			dev()->adc->adcsra.var |= (6 << ADPS0);
 			analog.par.DIVISION_FACTOR = 64;
 		break;
 		case 128: // 7
-			atmega32u4.adc.reg->adcsra |= (7 << ADPS0);
+			dev()->adc->adcsra.var |= (7 << ADPS0);
 			analog.par.DIVISION_FACTOR = 128;
 		break;
 		default: // 7
-			atmega32u4.adc.reg->adcsra |= (7 << ADPS0);
+			dev()->adc->adcsra.var |= (7 << ADPS0);
 			analog.par.DIVISION_FACTOR = 128;
 		break;
 	}
-	atmega32u4.cpu.reg->sreg = tSREG;
-	atmega32u4.cpu.reg->sreg |= (1 << GLOBAL_INTERRUPT_ENABLE);
+	dev()->cpu->sreg.var = tSREG;
+	dev()->cpu->sreg.var |= (1 << GLOBAL_INTERRUPT_ENABLE);
 	
 #ifdef _ANALOG_MODULE_
-	atmega32u4.adc.run = analog;
+	dev()->adc.run = analog;
 #endif
 
 	return analog;
@@ -144,9 +141,9 @@ int ANALOG_read(int selection)
 {
 	uint8_t ADSC_FLAG;
 	ADSC_FLAG = (1 << ADSC);
-	if( !(atmega32u4.adc.reg->adcsra & ADSC_FLAG) ){
+	if( !(dev()->adc->adcsra.var & ADSC_FLAG) ){
 		//ADC_SELECT
-		atmega32u4.adc.reg->adcsra |= (1 << ADSC);
+		dev()->adc->adcsra.var |= (1 << ADSC);
 	}	
 	return ADC_VALUE[selection];
 }
@@ -169,8 +166,8 @@ ISR(ANALOG_INTERRUPT)
 			ADC_SELECTOR++;
 		else
 			ADC_SELECTOR = 0;
-		atmega32u4.adc.reg->admux &= ~MUX_MASK;
-		atmega32u4.adc.reg->admux |= (ADC_CHANNEL_GAIN[ADC_SELECTOR] & MUX_MASK);
+		dev()->adc->admux.var &= ~MUX_MASK;
+		dev()->adc->admux.var |= (ADC_CHANNEL_GAIN[ADC_SELECTOR] & MUX_MASK);
 	}		
 }
 

@@ -169,10 +169,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Library\74hc595.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\74hc595.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Library\atmega32U4.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\atmega32U4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_analog.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_analog.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\atmega32U4_instance.h">
@@ -205,16 +217,82 @@
     <Compile Include="Library\atmega32U4_timer4.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Library\atmegaeeprom.c">
+    <Compile Include="Library\atmega32U4_twi.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Library\atmegaeeprom.h">
+    <Compile Include="Library\atmega32U4_twi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega_eeprom.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega_eeprom.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\buffer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\buffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\clock.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\clock.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\explode.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\explode.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\function.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\function.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\hx711.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\hx711.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\keypad.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\keypad.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\lcd.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\lcd2p.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\lcd2p.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\rotenc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\rotenc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\watch.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\watch.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\znpid.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\znpid.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">

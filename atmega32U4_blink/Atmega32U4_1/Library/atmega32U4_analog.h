@@ -1,15 +1,12 @@
 /************************************************************************
 	ANALOG
-Author: Sergio Manuel Santos
-	<sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32u4
-Date: 03122023
-Comment:
-	Very Stable
+Date:     03122023
 ************************************************************************/
-#ifndef _ATMEGA32U4ANALOG_H_
-	#define _ATMEGA32U4ANALOG_H_
+#ifndef _ATMEGA32U4_ANALOG_H_
+	#define _ATMEGA32U4_ANALOG_H_
 
 /*** Global Library ***/
 #include <inttypes.h>

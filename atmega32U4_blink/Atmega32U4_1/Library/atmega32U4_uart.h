@@ -8,8 +8,8 @@ Date: 03122023
 Comment:
 	stable
 ************************************************************************/
-#ifndef _ATMEGA32U4UART_H_
-	#define _ATMEGA32U4UART_H_
+#ifndef _ATMEGA32U4_UART_H_
+	#define _ATMEGA32U4_UART_H_
 
 /*** Global Library ***/
 #include <inttypes.h>

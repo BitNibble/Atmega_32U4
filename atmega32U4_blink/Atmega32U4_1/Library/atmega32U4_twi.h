@@ -1,15 +1,12 @@
 /***************************************************************************************************
 	TWI API
-Author: Sergio Santos
-	<sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32u4 by ETT ET-BASE
-Date: 03122023
-Comment:
-	Stable
+Date:     03122023
  **************************************************************************************************/
-#ifndef _ATMEGA32U4TWI_H_
-	#define _ATMEGA32U4TWI_H_
+#ifndef _ATMEGA32U4_TWI_H_
+	#define _ATMEGA32U4_TWI_H_
 
 /*** Global Library ***/
 #include <inttypes.h>

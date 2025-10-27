@@ -5,8 +5,8 @@ License:  GNU General Public License
 Hardware: ATmega
 Date:     03122023
 *************************************************************************/
-#ifndef _ATMEGAEEPROM_H_
-	#define _ATMEGAEEPROM_H_
+#ifndef _ATMEGA_EEPROM_H_
+	#define _ATMEGA_EEPROM_H_
 
 /*** Global Library ***/
 #include <avr/eeprom.h>
