@@ -1,0 +1,2 @@
+﻿14:11:59: [ERROR] Default version of XC8 toolchain is not installed
+14:11:59: [ERROR] Default version of XC8 toolchain is not installed

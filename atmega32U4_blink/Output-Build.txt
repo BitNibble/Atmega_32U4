@@ -1,0 +1,16 @@
+﻿------ Clean started: Project: Atmega32U4_1, Configuration: Debug AVR ------
+Build started.
+Project "Atmega32U4_1.cproj" (Clean target(s)):
+Target "Clean" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Compiler.targets" from project "D:\Embedded\Atmega_32U4\Proj_atmega32U4_1\Atmega32U4_1\Atmega32U4_1.cproj" (entry point):
+	Task "RunCompilerTask"
+		Shell Utils Path C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils
+		C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils\make.exe clean 
+		rm -rf  Library/atmega32u4mapping.o Library/atmegaeeprom.o Library/explode.o main.o   
+		rm -rf  Library/atmega32u4mapping.d Library/atmegaeeprom.d Library/explode.d main.d   
+		rm -rf "Atmega32U4_1.elf" "Atmega32U4_1.hex" "Atmega32U4_1.eep" "Atmega32U4_1.map" "Atmega32U4_1.usersignatures" "Atmega32U4_1.a"  "Atmega32U4_1.lss"
+	Done executing task "RunCompilerTask".
+Done building target "Clean" in project "Atmega32U4_1.cproj".
+Done building project "Atmega32U4_1.cproj".
+
+Build succeeded.
+========== Clean: 1 succeeded, 0 failed, 0 skipped ==========

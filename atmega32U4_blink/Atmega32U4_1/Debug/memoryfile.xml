@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="Atmega32U4_1.elf">                 
+    <memory name="program">              
+      <units>bytes</units>                 
+      <length>32768</length>                 
+      <used>3392</used>                     
+      <free>29376</free>                     
+    </memory>                              
+    <memory name="data">                 
+      <units>bytes</units>                 
+      <length>2560</length>                 
+      <used>77</used>                     
+      <free>2483</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
