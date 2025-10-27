@@ -84,11 +84,16 @@ TC3_Handler* tc3(void){ return &atmega32u4_tc3_setup; }
 void TIMER_COUNTER3_wavegenmode(unsigned char wavegenmode)
 {
 	switch (wavegenmode) {
-		case 0: break; /* Normal */
+		// Normal - 0xFFFF Immediate MAX
+		case 0: break;
+		// PWM, Phase Correct, 8-bit - 0x00FF TOP BOTTOM
 		case 1: dev()->tc3->tccr3a.var |= (1 << WGM30); break;
+		// PWM, Phase Correct, 9-bit - 0x01FF TOP BOTTOM
 		case 2: dev()->tc3->tccr3a.var |= (1 << WGM31); break;
-		case 3: dev()->tc3->tccr3b.var |= (1 << WGM32); break;
-		case 4: dev()->tc3->tccr3b.var |= (1 << WGM33); break; // ICR
+		// CTC - OCRnA Immediate MAX
+		case 4: dev()->tc3->tccr3b.var |= (1 << WGM32); break;
+		// PWM, Phase and Frequency Correct - ICRn BOTTOM BOTTOM
+		case 8: dev()->tc3->tccr3b.var |= (1 << WGM33); break;
 		default: break;
 	}
 }
@@ -163,6 +168,10 @@ void TIMER_COUNTER3_compoutmodeA(unsigned char compoutmode)
             dev()->portc->ddr.var |= 0x04;
             dev()->tc3->tccr3a.var |= (1 << COM3A1);
             break;
+        case 3:
+			dev()->portc->ddr.var |= 0x04;
+			dev()->tc3->tccr3a.var |= ((1 << COM3A0) | (1 << COM3A1));
+			break;
         default: break;
     }
 }
@@ -178,6 +187,10 @@ void TIMER_COUNTER3_compoutmodeB(unsigned char compoutmode)
             dev()->portc->ddr.var |= 0x08;
             dev()->tc3->tccr3a.var |= (1 << COM3B1);
             break;
+        case 3:
+			dev()->portc->ddr.var |= 0x08;
+			dev()->tc3->tccr3a.var |= ((1 << COM3B0) | (1 << COM3B1));
+			break;
         default: break;
     }
 }
@@ -193,6 +206,10 @@ void TIMER_COUNTER3_compoutmodeC(unsigned char compoutmode)
             dev()->portc->ddr.var |= 0x10;
             dev()->tc3->tccr3a.var |= (1 << COM3C1);
             break;
+        case 3:
+			dev()->portc->ddr.var |= 0x10;
+			dev()->tc3->tccr3a.var |= ((1 << COM3C0) | (1 << COM3C1));
+			break;
         default: break;
     }
 }

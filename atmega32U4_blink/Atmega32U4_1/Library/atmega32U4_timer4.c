@@ -20,6 +20,7 @@ void TIMER_COUNTER4_compoutmodeD(unsigned char mode);
 void TIMER_COUNTER4_clear_compoutmode(void);
 void TIMER_COUNTER4_compareA(uint16_t compare);
 void TIMER_COUNTER4_compareB(uint16_t compare);
+void TIMER_COUNTER4_compareC(uint16_t compare);
 void TIMER_COUNTER4_compareD(uint16_t compare);
 uint8_t TIMER_COUNTER4_start(uint16_t prescaler);
 uint8_t TIMER_COUNTER4_stop(void);
@@ -45,6 +46,7 @@ static TC4_Handler atmega32u4_tc4_setup = {
 	.clear_compoutmode = TIMER_COUNTER4_clear_compoutmode,
     .compareA = TIMER_COUNTER4_compareA,
     .compareB = TIMER_COUNTER4_compareB,
+	.compareC = TIMER_COUNTER4_compareC,
     .compareD = TIMER_COUNTER4_compareD,
     .start = TIMER_COUNTER4_start,
     .stop  = TIMER_COUNTER4_stop
@@ -79,27 +81,33 @@ TC4_Handler* tc4(void){ return &atmega32u4_tc4_setup; }
 void TIMER_COUNTER4_wavegenmode(unsigned char mode)
 {
 	switch(mode){
-		case 0: // Normal
-			// all bits cleared
+		// Normal - OCR4C Immediate TOP
+		case 4:
+			dev()->tc4->tccr4b.par.pwm4x = 0;
 			break;
-		case 1: // Phase Correct 8-bit
+		// Fast PWM - OCR4C TOP TOP
+		case 0:
+			dev()->tc4->tccr4b.par.pwm4x = 1;
+			break;
+		// Phase and Frequency Correct PWM - OCR4C BOTTOM BOTTOM
+		case 1:
+			dev()->tc4->tccr4b.par.pwm4x = 1;
 			dev()->tc4->tccr4d.var |= (1 << WGM40);
 			break;
-		case 2: // Phase Correct 9-bit
+		// PWM6 / Single-slope - OCR4C TOP TOP
+		case 2:
+			dev()->tc4->tccr4b.par.pwm4x = 1;
 			dev()->tc4->tccr4d.var |= (1 << WGM41);
 			break;
-		case 3: // Phase Correct 10-bit
-			dev()->tc4->tccr4d.var |= (1 << WGM41) | (1 << WGM40);
-			break;
-		case 7: // Fast PWM, OCR4A TOP
-			dev()->tc4->tccr4b.var |= (1 << 2);
-			dev()->tc4->tccr4d.var |= (1 << WGM41) | (1 << WGM40);
+		// PWM6 / Dual-slope - OCR4C BOTTOM BOTTOM
+		case 3:
+			dev()->tc4->tccr4b.par.pwm4x = 1;
+			dev()->tc4->tccr4d.var |= ((1 << WGM41) | (1 << WGM40));
 			break;
 		default:
 		break;
 	}
 }
-
 void TIMER_COUNTER4_clear_wavegenmode(void)
 {
 	dev()->tc4->tccr4d.var &= ~((1 << WGM41) | (1 << WGM40));
@@ -127,9 +135,14 @@ void TIMER_COUNTER4_clear_interrupt(void)
 void TIMER_COUNTER4_compoutmodeA(unsigned char mode)
 {
 	switch(mode){
+		// Normal Mode - Normal port operation - Disconnected Disconnected
 		case 0: break;
-		case 1: dev()->portc->ddr.var |= 0x10; dev()->tc4->tccr4a.var |= (1 << COM4A0); break; // PC4
-		case 2: dev()->portc->ddr.var |= 0x10; dev()->tc4->tccr4a.var |= (1 << COM4A1); break;
+		// Normal Mode - Toggle on Compare Match - Connected Disconnected
+		case 1: dev()->portc->ddr.var |= (1 << 7); dev()->tc4->tccr4a.var |= (1 << COM4A0); break; // PC7
+		// Normal Mode - Clear on Compare Match - Connected Disconnected
+		case 2: dev()->portc->ddr.var |= (1 << 7); dev()->tc4->tccr4a.var |= (1 << COM4A1); break;
+		// Normal Mode - Set on Compare Match - Connected Disconnected
+		case 3: dev()->portc->ddr.var |= (1 << 7); dev()->tc4->tccr4a.var |= ((1 << COM4A0) | (1 << COM4A1)); break;
 		default: break;
 	}
 }
@@ -137,8 +150,9 @@ void TIMER_COUNTER4_compoutmodeB(unsigned char mode)
 {
 	switch(mode){
 		case 0: break;
-		case 1: dev()->portc->ddr.var |= 0x20; dev()->tc4->tccr4a.var |= (1 << COM4B0); break; // PC5
-		case 2: dev()->portc->ddr.var |= 0x20; dev()->tc4->tccr4a.var |= (1 << COM4B1); break;
+		case 1: dev()->portb->ddr.var |= (1 << 6); dev()->tc4->tccr4a.var |= (1 << COM4B0); break; // PB6
+		case 2: dev()->portb->ddr.var |= (1 << 6); dev()->tc4->tccr4a.var |= (1 << COM4B1); break;
+		case 3: dev()->portb->ddr.var |= (1 << 6); dev()->tc4->tccr4a.var |= ((1 << COM4B0) | (1 << COM4B1)); break;
 		default: break;
 	}
 }
@@ -146,8 +160,9 @@ void TIMER_COUNTER4_compoutmodeD(unsigned char mode)
 {
 	switch(mode){
 		case 0: break;
-		case 1: dev()->portd->ddr.var |= 0x80; dev()->tc4->tccr4c.var |= (1 << COM4D0); break; // PD7
-		case 2: dev()->portd->ddr.var |= 0x80; dev()->tc4->tccr4c.var |= (1 << COM4D1); break;
+		case 1: dev()->portd->ddr.var |= (1 << 7); dev()->tc4->tccr4c.var |= (1 << COM4D0); break; // PD7
+		case 2: dev()->portd->ddr.var |= (1 << 7); dev()->tc4->tccr4c.var |= (1 << COM4D1); break;
+		case 3: dev()->portd->ddr.var |= (1 << 7); dev()->tc4->tccr4c.var |= ((1 << COM4D0) | (1 << COM4D1)); break;
 		default: break;
 	}
 }
@@ -167,6 +182,11 @@ void TIMER_COUNTER4_compareB(uint16_t compare){
 	U_word hl = WriteHLByte(compare);
 	dev()->tc4->tc4h.var = hl.par.h.var;
 	dev()->tc4->ocr4b.var = hl.par.l.var;
+}
+void TIMER_COUNTER4_compareC(uint16_t compare){
+	U_word hl = WriteHLByte(compare);
+	dev()->tc4->tc4h.var = hl.par.h.var;
+	dev()->tc4->ocr4c.var = hl.par.l.var;
 }
 void TIMER_COUNTER4_compareD(uint16_t compare){
 	U_word hl = WriteHLByte(compare);

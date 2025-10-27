@@ -40,6 +40,7 @@ typedef struct {
 	void (*clear_compoutmode)(void);
     void (*compareA)(uint16_t value);
     void (*compareB)(uint16_t value);
+	void (*compareC)(uint16_t value);
     void (*compareD)(uint16_t value);
     uint8_t (*start)(uint16_t prescaler);
     uint8_t (*stop)(void);

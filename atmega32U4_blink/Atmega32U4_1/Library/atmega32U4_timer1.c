@@ -88,9 +88,9 @@ void TIMER_COUNTER1_wavegenmode(unsigned char wavegenmode)
 		// PWM, Phase Correct, 9-bit - 0x01FF TOP BOTTOM
         case 2: dev()->tc1->tccr1a.var |= (1 << WGM11); break;
 		// CTC - OCRnA Immediate MAX
-        case 3: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
+        case 4: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
 		// PWM, Phase and Frequency Correct - ICRn BOTTOM BOTTOM
-        case 4: dev()->tc1->tccr1b.var |= (1 << WGM13); break; // ICR
+        case 8: dev()->tc1->tccr1b.var |= (1 << WGM13); break;
         default: break;
     }
 }

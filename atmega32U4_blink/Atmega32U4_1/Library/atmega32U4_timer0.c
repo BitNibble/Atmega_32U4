@@ -74,12 +74,28 @@ TC0_Handler* tc0(void){ return &atmega32u4_tc0_setup; }
 void TIMER_COUNTER0_wavegenmode(uint8_t wavegenmode)
 {
     switch(wavegenmode){
-        case 0: break; /* Normal */
-        case 1: dev()->tc0->tccr0a.var |= (1 << WGM00); break; /* PWM, Phase Correct */
-        case 2: dev()->tc0->tccr0a.var |= (1 << WGM01); break; /* CTC */
-        case 3:
-            dev()->tc0->tccr0a.var |= ((1 << WGM01) | (1 << WGM00)); /* Fast PWM */
+		// Normal - 0xFF Immediate MAX
+        case 0: break;
+		// PWM, Phase Correct - 0xFF TOP BOTTOM
+        case 1: 
+			dev()->tc0->tccr0a.var |= (1 << WGM00); 
+			break;
+		// CTC - OCRA Immediate MAX
+        case 2: 
+			dev()->tc0->tccr0a.var |= (1 << WGM01); 
+			break;
+		// Fast PWM - 0xFF TOP MAX
+        case 3: 
+			dev()->tc0->tccr0a.var |= ((1 << WGM00) | (1 << WGM01)); 
+			break;
+		// PWM, Phase Correct - OCRA TOP BOTTOM
+        case 5:
+            dev()->tc0->tccr0a.var |= ((1 << WGM00) | (1 << WGM02));
             break;
+		// Fast PWM - OCRA TOP TOP
+        case 7:
+			dev()->tc0->tccr0a.var |= ((1 << WGM00) | (1 << WGM01) | (1 << WGM02));
+			break;
         default: break;
     }
 }
@@ -137,13 +153,17 @@ void TIMER_COUNTER0_compoutmodeA(uint8_t compoutmode)
     switch(compoutmode){
         case 0: break;
         case 1:
-            dev()->portb->ddr.var |= 0x20; /* PB7 (OC0A) */
+            dev()->portb->ddr.var |= 0x80; /* PB7 (OC0A) */
             dev()->tc0->tccr0a.var |= (1 << COM0A0);
             break;
         case 2:
-            dev()->portb->ddr.var |= 0x20;
+            dev()->portb->ddr.var |= 0x80;
             dev()->tc0->tccr0a.var |= (1 << COM0A1);
             break;
+        case 3:
+			dev()->portb->ddr.var |= 0x80;
+			dev()->tc0->tccr0a.var |= ((1 << COM0A0) | (1 << COM0A1));
+			break;
         default: break;
     }
 }
@@ -152,13 +172,17 @@ void TIMER_COUNTER0_compoutmodeB(uint8_t compoutmode)
     switch(compoutmode){
         case 0: break;
         case 1:
-            dev()->portd->ddr.var |= 0x40; /* PD6 (OC0B) */
+            dev()->portd->ddr.var |= 0x01; /* PD0 (OC0B) */
             dev()->tc0->tccr0a.var |= (1 << COM0B0);
             break;
         case 2:
-            dev()->portd->ddr.var |= 0x40;
+            dev()->portd->ddr.var |= 0x01;
             dev()->tc0->tccr0a.var |= (1 << COM0B1);
             break;
+        case 3:
+			dev()->portd->ddr.var |= 0x01;
+			dev()->tc0->tccr0a.var |= ((1 << COM0B0) | (1 << COM0B1));
+			break;
         default: break;
     }
 }

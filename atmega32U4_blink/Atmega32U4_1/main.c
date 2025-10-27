@@ -21,7 +21,7 @@ int main(void) {
 	tc1()->compareA(17654);
 	
 	tc1()->callback.compa_vect = toggle;
-	tc1()->callback.ovf_vect = toggle;
+	//tc1()->callback.ovf_vect = toggle;
 	
 	tc1()->start(64);
 
