@@ -15,11 +15,15 @@ void toggle(void){
 int main(void) {
 	dev()->portc->ddr.par.bit7 = 1;
 	
-	tc1_enable(3,1);
+	tc1_enable(0,1);
+	tc1()->interrupt(2);
 	
+	tc1()->compareA(17654);
+	
+	tc1()->callback.compa_vect = toggle;
 	tc1()->callback.ovf_vect = toggle;
 	
-	tc1()->start(1024);
+	tc1()->start(64);
 
 	while (1) {
 		

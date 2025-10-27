@@ -33,7 +33,7 @@ Date:     03122023
 //#define LM73_ID 0x90			// LM73 address temperature sensor
 
 /*** Global Variable ***/
-struct twowire{
+struct two_wire{
 	void (*start)(void);
 	void (*connect)(uint8_t address, uint8_t rw);
 	void (*master_write)(uint8_t var_twiData_u8);
@@ -41,7 +41,7 @@ struct twowire{
 	void (*stop)(void);
 	uint8_t (*status)(void);
 };
-typedef struct twowire TWI;
+typedef struct two_wire TWI;
 
 /*** Global Header ***/
 TWI TWIenable(uint8_t atmega_ID, uint8_t prescaler);

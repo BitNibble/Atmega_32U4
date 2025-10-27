@@ -81,10 +81,15 @@ TC1_Handler* tc1(void){ return &atmega32u4_tc1_setup; }
 void TIMER_COUNTER1_wavegenmode(unsigned char wavegenmode)
 {
     switch(wavegenmode){
-        case 0: break; /* Normal */
+		// Normal - 0xFFFF Immediate MAX
+        case 0: break;
+		// PWM, Phase Correct, 8-bit - 0x00FF TOP BOTTOM
         case 1: dev()->tc1->tccr1a.var |= (1 << WGM10); break;
+		// PWM, Phase Correct, 9-bit - 0x01FF TOP BOTTOM
         case 2: dev()->tc1->tccr1a.var |= (1 << WGM11); break;
+		// CTC - OCRnA Immediate MAX
         case 3: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
+		// PWM, Phase and Frequency Correct - ICRn BOTTOM BOTTOM
         case 4: dev()->tc1->tccr1b.var |= (1 << WGM13); break; // ICR
         default: break;
     }
@@ -116,7 +121,6 @@ void TIMER_COUNTER1_interrupt(unsigned char interrupt)
 			dev()->tc1->timsk1.var |= (1 << ICIE1);
 			break;
         default:
-		    dev()->tc1->timsk1.var |= (1 << TOIE1);
 			break;
     }
 	dev()->cpu->sreg.var |= 1 << 7;
@@ -149,45 +153,69 @@ uint8_t TIMER_COUNTER1_start(unsigned int prescaler)
 void TIMER_COUNTER1_compoutmodeA(unsigned char compoutmode)
 {
     switch(compoutmode){
+		// Normal port operation, OCnA/OCnB/OCnC disconnected
         case 0: break;
+		// Toggle OCnA/OCnB/OCnC on compare match
         case 1:
             dev()->portb->ddr.var |= 0x20; /* PB5 OC1A */
             dev()->tc1->tccr1a.var |= (1 << COM1A0);
             break;
+		// Clear OCnA/OCnB/OCnC on compare match (set output to low level)
         case 2:
             dev()->portb->ddr.var |= 0x20;
             dev()->tc1->tccr1a.var |= (1 << COM1A1);
             break;
+		// Set OCnA/OCnB/OCnC on compare match (set output to high level)
+        case 3:
+			dev()->portb->ddr.var |= 0x20;
+			dev()->tc1->tccr1a.var |= ((1 << COM1A0) | (1 << COM1A1));
+			break;
         default: break;
     }
 }
 void TIMER_COUNTER1_compoutmodeB(unsigned char compoutmode)
 {
     switch(compoutmode){
+		// Normal port operation, OCnA/OCnB/OCnC disconnected
         case 0: break;
+		// Toggle OCnA/OCnB/OCnC on compare match
         case 1:
             dev()->portb->ddr.var |= 0x40; /* PB6 OC1B */
             dev()->tc1->tccr1a.var |= (1 << COM1B0);
             break;
+		// Clear OCnA/OCnB/OCnC on compare match (set output to low level)
         case 2:
             dev()->portb->ddr.var |= 0x40;
             dev()->tc1->tccr1a.var |= (1 << COM1B1);
             break;
+		// Set OCnA/OCnB/OCnC on compare match (set output to high level)
+        case 3:
+			dev()->portb->ddr.var |= 0x40;
+			dev()->tc1->tccr1a.var |= ((1 << COM1B0) | (1 << COM1B1));
+			break;
         default: break;
     }
 }
 void TIMER_COUNTER1_compoutmodeC(unsigned char compoutmode)
 {
     switch(compoutmode){
+		// Normal port operation, OCnA/OCnB/OCnC disconnected
         case 0: break;
+		// Toggle OCnA/OCnB/OCnC on compare match
         case 1:
             dev()->portb->ddr.var |= 0x80; /* PB7 OC1C */
             dev()->tc1->tccr1a.var |= (1 << COM1C0);
             break;
+		// Clear OCnA/OCnB/OCnC on compare match (set output to low level)
         case 2:
             dev()->portb->ddr.var |= 0x80;
             dev()->tc1->tccr1a.var |= (1 << COM1C1);
             break;
+		// Set OCnA/OCnB/OCnC on compare match (set output to high level)
+        case 3:
+			dev()->portb->ddr.var |= 0x80;
+			dev()->tc1->tccr1a.var |= ((1 << COM1C0) | (1 << COM1C1));
+			break;
         default: break;
     }
 }
