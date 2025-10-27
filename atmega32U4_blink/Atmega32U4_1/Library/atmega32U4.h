@@ -28,6 +28,7 @@ Date:     26092025
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 #include <util/delay.h>
 
 /*******************************************************************/

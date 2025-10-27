@@ -85,7 +85,7 @@ void TIMER_COUNTER1_wavegenmode(unsigned char wavegenmode)
         case 1: dev()->tc1->tccr1a.var |= (1 << WGM10); break;
         case 2: dev()->tc1->tccr1a.var |= (1 << WGM11); break;
         case 3: dev()->tc1->tccr1b.var |= (1 << WGM12); break;
-        case 4: dev()->tc1->tccr1b.var |= (1 << WGM13); break;
+        case 4: dev()->tc1->tccr1b.var |= (1 << WGM13); break; // ICR
         default: break;
     }
 }

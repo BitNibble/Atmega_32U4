@@ -39,7 +39,10 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Library/atmega32U4.c \
+../Library/atmega32U4_timer0.c \
 ../Library/atmega32U4_timer1.c \
+../Library/atmega32U4_timer3.c \
+../Library/atmega32U4_timer4.c \
 ../Library/atmegaeeprom.c \
 ../Library/explode.c \
 ../main.c
@@ -53,28 +56,40 @@ ASM_SRCS +=
 
 OBJS +=  \
 Library/atmega32U4.o \
+Library/atmega32U4_timer0.o \
 Library/atmega32U4_timer1.o \
+Library/atmega32U4_timer3.o \
+Library/atmega32U4_timer4.o \
 Library/atmegaeeprom.o \
 Library/explode.o \
 main.o
 
 OBJS_AS_ARGS +=  \
 Library/atmega32U4.o \
+Library/atmega32U4_timer0.o \
 Library/atmega32U4_timer1.o \
+Library/atmega32U4_timer3.o \
+Library/atmega32U4_timer4.o \
 Library/atmegaeeprom.o \
 Library/explode.o \
 main.o
 
 C_DEPS +=  \
 Library/atmega32U4.d \
+Library/atmega32U4_timer0.d \
 Library/atmega32U4_timer1.d \
+Library/atmega32U4_timer3.d \
+Library/atmega32U4_timer4.d \
 Library/atmegaeeprom.d \
 Library/explode.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
 Library/atmega32U4.d \
+Library/atmega32U4_timer0.d \
 Library/atmega32U4_timer1.d \
+Library/atmega32U4_timer3.d \
+Library/atmega32U4_timer4.d \
 Library/atmegaeeprom.d \
 Library/explode.d \
 main.d
@@ -100,7 +115,28 @@ Library/atmega32U4.o: ../Library/atmega32U4.c
 	@echo Finished building: $<
 	
 
+Library/atmega32U4_timer0.o: ../Library/atmega32U4_timer0.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 0.0
+	$(QUOTE)C:\Program Files\Microchip\xc8\v3.10\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.2.509\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DDEBUG  -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 Library/atmega32U4_timer1.o: ../Library/atmega32U4_timer1.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 0.0
+	$(QUOTE)C:\Program Files\Microchip\xc8\v3.10\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.2.509\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DDEBUG  -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Library/atmega32U4_timer3.o: ../Library/atmega32U4_timer3.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 0.0
+	$(QUOTE)C:\Program Files\Microchip\xc8\v3.10\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.2.509\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DDEBUG  -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Library/atmega32U4_timer4.o: ../Library/atmega32U4_timer4.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 0.0
 	$(QUOTE)C:\Program Files\Microchip\xc8\v3.10\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32U4  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.2.509\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32U4__ -DDEBUG  -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

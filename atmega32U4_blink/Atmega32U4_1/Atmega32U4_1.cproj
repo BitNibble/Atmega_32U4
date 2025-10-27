@@ -181,10 +181,28 @@
     <Compile Include="Library\atmega32U4_register.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Library\atmega32U4_timer0.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_timer0.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Library\atmega32U4_timer1.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\atmega32U4_timer1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_timer3.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_timer3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_timer4.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\atmega32U4_timer4.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Library\atmegaeeprom.c">
