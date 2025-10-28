@@ -119,7 +119,6 @@ void TIMER_COUNTER0_interrupt(uint8_t interrupt)
             dev()->tc0->timsk0.var |= (1 << OCIE0B);
             break;
         default:
-		    dev()->tc0->timsk0.var |= (1 << TOIE0);
 			break;
     }
 	dev()->cpu->sreg.var |= 1 << 7;

@@ -1,15 +1,15 @@
 /********************************************************************
 	ATMEGA 32U4 INSTANCE
-Author: <sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32U4
-Date: 26092025
+Date:     26092025
 ********************************************************************/
 #ifndef _ATMEGA32U4_INSTANCE_H_
 	#define _ATMEGA32U4_INSTANCE_H_
 
 /*** Library ***/
-#include "atmega32u4_register.h"
+#include "atmega32U4_register.h"
 #include <avr/sfr_defs.h>
 
 /*** Define & Macro ***/

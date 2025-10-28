@@ -124,7 +124,6 @@ void TIMER_COUNTER3_interrupt(unsigned char interrupt)
 			dev()->tc3->timsk3.var |= (1 << ICIE3);
 			break;
         default:
-		    dev()->tc3->timsk3.var |= (1 << TOIE3);
 			break;
     }
 	dev()->cpu->sreg.var |= 1 << 7;

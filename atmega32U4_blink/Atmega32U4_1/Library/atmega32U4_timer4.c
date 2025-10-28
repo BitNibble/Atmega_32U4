@@ -110,6 +110,7 @@ void TIMER_COUNTER4_wavegenmode(unsigned char mode)
 }
 void TIMER_COUNTER4_clear_wavegenmode(void)
 {
+	dev()->tc4->tccr4b.par.pwm4x = 0;
 	dev()->tc4->tccr4d.var &= ~((1 << WGM41) | (1 << WGM40));
 }
 

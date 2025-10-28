@@ -1,9 +1,9 @@
 /********************************************************************
 	ATMEGA 32U4 MAPPING
-Author: <sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32U4
-Date: 26092025
+Date:     26092025
 *********************************************************************/
 /*** File Library ***/
 #include "atmega32U4.h"

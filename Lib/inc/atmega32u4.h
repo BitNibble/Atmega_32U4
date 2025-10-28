@@ -1,9 +1,9 @@
 /********************************************************************
 	ATMEGA 32U4 MAPPING
-Author: <sergio.salazar.santos@gmail.com>
-License: GNU General Public License
+Author:   <sergio.salazar.santos@gmail.com>
+License:  GNU General Public License
 Hardware: Atmega32U4
-Date: 26092025
+Date:     26092025
 ********************************************************************/
 #ifndef _ATMEGA32U4_H_
 	#define _ATMEGA32U4_H_
@@ -28,6 +28,7 @@ Date: 26092025
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 #include <util/delay.h>
 
 /*******************************************************************/
