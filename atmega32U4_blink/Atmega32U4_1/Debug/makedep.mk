@@ -6,8 +6,6 @@ Library\74hc595.c
 
 Library\atmega32U4.c
 
-Library\atmega32U4_analog.c
-
 Library\atmega32U4_timer0.c
 
 Library\atmega32U4_timer1.c

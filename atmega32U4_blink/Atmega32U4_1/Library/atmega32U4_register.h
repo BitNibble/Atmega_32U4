@@ -585,7 +585,7 @@ typedef union {
 	struct {
 		uint8_t adts : 4;
 		uint8_t      : 1;
-		uint8_t mux5 : 5;
+		uint8_t mux5 : 1;
 		uint8_t acme : 1;
 		uint8_t adhsm : 1;
 	} par;
@@ -594,11 +594,7 @@ typedef union {
 // 0x7C - ADMUX (ADC Multiplexer Selection Register)
 typedef union {
 	struct {
-		uint8_t mux0 : 1;
-		uint8_t mux1 : 1;
-		uint8_t mux2 : 1;
-		uint8_t mux3 : 1;
-		uint8_t mux4 : 1;
+		uint8_t mux0_4 : 5;
 		uint8_t adlar : 1;
 		uint8_t refs : 2;
 	} par;

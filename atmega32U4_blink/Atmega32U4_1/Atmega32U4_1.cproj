@@ -182,12 +182,6 @@
     <Compile Include="Library\atmega32U4.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Library\atmega32U4_analog.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Library\atmega32U4_analog.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Library\atmega32U4_instance.h">
       <SubType>compile</SubType>
     </Compile>

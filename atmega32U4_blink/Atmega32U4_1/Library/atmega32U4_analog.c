@@ -17,8 +17,7 @@
 #define MAX_CHANNEL 8
 
 #if defined(__AVR_ATmega16U4__) || defined(__AVR_ATmega32U4__)
-    #define MUX_MASK 15
-    #define ANALOG_INTERRUPT ADC_vect
+    #define MUX_MASK 31
 #else
     #error "Not ATmega32U4"
 #endif
@@ -43,7 +42,7 @@ static inline void adc_start_conversion(void) {
 }
 
 /* Initialize */
-ANALOG ANALOGenable(uint8_t Vreff, uint8_t Divfactor, int n_channel, ...)
+ANALOG adc_enable(uint8_t Vreff, uint8_t Divfactor, int n_channel, ...)
 {
     va_list list;
     uint8_t savedSREG = dev()->cpu->sreg.var;
@@ -119,10 +118,6 @@ ANALOG ANALOGenable(uint8_t Vreff, uint8_t Divfactor, int n_channel, ...)
     /* Start the first conversion */
     adc_start_conversion();
 
-#ifdef _ANALOG_MODULE_
-    dev()->adc.run = analog;
-#endif
-
     return analog;
 }
 
@@ -139,12 +134,14 @@ int ANALOG_read(int selection)
     uint16_t v = ADC_VALUE[selection];
 
     dev()->cpu->sreg.var = sreg;
+	
     return (int)v;
+	//return 500;
 }
 
 
 /* ISR: collect sample, average, advance channel, start next conversion */
-ISR(ANALOG_INTERRUPT)
+ISR(ADC_vect)
 {
     uint16_t sample = 0;
     sample = (uint16_t)ADCL;
@@ -175,9 +172,9 @@ ISR(ANALOG_INTERRUPT)
     }
 
     /* Start next conversion so we continuously sample channels */
-    dev()->adc->adcsra.var |= (1 << ADSC);
+    //adc_start_conversion();
+	ADCSRA |= (1 << ADSC);
 }
 
 /*** EOF ***/
-
 
